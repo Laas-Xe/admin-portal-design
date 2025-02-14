@@ -1,4 +1,5 @@
-# admin-panel
+# admin-panel  
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e21f39d2-f245-4491-949b-38d061f76b41/deploy-status)](https://app.netlify.com/sites/cheerful-palmier-d79eeb/deploys)
 
 <div align="center" style="margin: 30px;">
     <a href="https://refine.dev">
