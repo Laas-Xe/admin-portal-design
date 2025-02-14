@@ -671,7 +671,7 @@ export const ProCashUpdates: React.FC = () => {
               label={
                 <span>
                   Settlement File CID
-                  <Tooltip title="Tooltip Dummy content">
+                  <Tooltip title="LaaS App Customer Id">
                     <InfoCircleOutlined style={{ marginLeft: 8 }} />
                   </Tooltip>
                 </span>

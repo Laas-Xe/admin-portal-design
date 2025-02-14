@@ -654,7 +654,7 @@ export const GituConfig: React.FC = () => {
             <div style={{ display: 'flex', gap: token.padding, marginBottom: token.marginLG }}>
               <Form.Item
                 label={
-                  <Tooltip title="Interface code for the system">
+                  <Tooltip title="GITU File Interface Code">
                     <span>
                       Interface Code <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
                     </span>
@@ -669,7 +669,7 @@ export const GituConfig: React.FC = () => {
 
               <Form.Item
                 label={
-                  <Tooltip title="File name for the system">
+                  <Tooltip title="GITU File Filename">
                     <span>
                       File Name <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
                     </span>
@@ -684,7 +684,7 @@ export const GituConfig: React.FC = () => {
 
               <Form.Item
                 label={
-                  <Tooltip title="External system for the interface">
+                  <Tooltip title="GITU External System">
                     <span>
                       External System <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
                     </span>
@@ -701,7 +701,7 @@ export const GituConfig: React.FC = () => {
             <div style={{ display: 'flex', gap: token.padding, marginBottom: token.marginLG }}>
               <Form.Item
                 label={
-                  <Tooltip title="Function ID for the system">
+                  <Tooltip title="GITU File Function ID">
                     <span>
                       Function ID <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
                     </span>
@@ -716,7 +716,7 @@ export const GituConfig: React.FC = () => {
 
               <Form.Item
                 label={
-                  <Tooltip title="Process number for the system">
+                  <Tooltip title="GITU File Process Number">
                     <span>
                       Process No <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
                     </span>
@@ -731,7 +731,7 @@ export const GituConfig: React.FC = () => {
 
               <Form.Item
                 label={
-                  <Tooltip title="Master status for the system">
+                  <Tooltip title="GITU File Master record statusm">
                     <span>
                       Master Status <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
                     </span>
@@ -748,7 +748,7 @@ export const GituConfig: React.FC = () => {
             <div style={{ display: 'flex', gap: token.padding, marginBottom: token.marginLG }}>
               <Form.Item
                 label={
-                  <Tooltip title="Master action for the system">
+                  <Tooltip title="GITU File Master record action">
                     <span>
                       Master Action <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
                     </span>
@@ -763,7 +763,7 @@ export const GituConfig: React.FC = () => {
 
               <Form.Item
                 label={
-                  <Tooltip title="Master branch code for the system">
+                  <Tooltip title="GITU File Master record Branch Code">
                     <span>
                       Master Branch Code <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
                     </span>
@@ -778,7 +778,7 @@ export const GituConfig: React.FC = () => {
 
               <Form.Item
                 label={
-                  <Tooltip title="Upload detail table for the system">
+                  <Tooltip title="GITU upload detail target table">
                     <span>
                       Upload Detail Table <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
                     </span>
@@ -795,7 +795,7 @@ export const GituConfig: React.FC = () => {
             <div style={{ display: 'flex', gap: token.padding, marginBottom: token.marginLG }}>
               <Form.Item
                 label={
-                  <Tooltip title="Upload master table for the system">
+                  <Tooltip title="GITU upload master target table">
                     <span>
                       Upload Master Table <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
                     </span>
@@ -810,7 +810,7 @@ export const GituConfig: React.FC = () => {
 
               <Form.Item
                 label={
-                  <Tooltip title="Settlement account number for the system">
+                  <Tooltip title="GITU File Settlement Account Number">
                     <span>
                       Settlement Account Number <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
                     </span>
