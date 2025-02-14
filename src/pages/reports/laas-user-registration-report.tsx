@@ -320,7 +320,7 @@ export const LaasUserRegistrationReport: React.FC = () => {
           pagination={{
             total: mockData.length,
             pageSize: 50,
-            showSizeChanger: true,
+            showSizeChanger: false,
             showQuickJumper: true,
           }}
         />

@@ -461,7 +461,7 @@ export const ReconciliationReport: React.FC = () => {
         pagination={{
           total: data.length,
           pageSize: 50,
-          showSizeChanger: true,
+          showSizeChanger: false,
           showQuickJumper: true,
         }}
       />

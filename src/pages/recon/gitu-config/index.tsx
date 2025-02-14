@@ -173,7 +173,7 @@ const EditModal: React.FC<EditModalProps> = ({
 
         <Form.Item
           label={
-            <Tooltip title="Online account branch code (FLD196)">
+            <Tooltip title="Merchant's Online Account Branch Code">
               <span>
                 Online A/c Branch Code(FLD196) <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
               </span>
@@ -187,7 +187,7 @@ const EditModal: React.FC<EditModalProps> = ({
 
         <Form.Item
           label={
-            <Tooltip title="Cost center associated with GL account">
+            <Tooltip title="General Ledger Account Cost Center">
               <span>
                 GL Cost Center <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
               </span>

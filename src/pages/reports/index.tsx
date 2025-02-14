@@ -18,10 +18,10 @@ const { Title } = Typography;
 const { RangePicker } = DatePicker;
 
 const reportTypes = [
-  { label: 'Reconcilation', value: 'reconcilation' },
-  { label: 'Payment GITU Transaction', value: 'payment_gitu' },
-  { label: 'Payment Transaction', value: 'payment_transaction' },
-  { label: 'LaaS User Registration', value: 'laas_registration' }
+  { label: 'Reconciled Match Mismatch Report', value: 'reconcilation' },
+  { label: 'App Payment GITU Transaction', value: 'payment_gitu' },
+  { label: 'App Payment Transaction', value: 'payment_transaction' },
+  { label: 'App User Registration', value: 'laas_registration' }
 ];
 
 const providers = [
@@ -119,7 +119,7 @@ export const Reports: React.FC = () => {
           <Col span={24}>
             <Form.Item
               name="dateRange"
-              label="From Date / To Date"
+              label="From Date / To Date (d-1)"
               rules={[{ required: true, message: 'Please select a date range' }]}
             >
               <RangePicker
@@ -129,7 +129,7 @@ export const Reports: React.FC = () => {
               />
             </Form.Item>
             <Alert
-              message="Last 1 year data available only"
+              message="Last 3 months data available only"
               type="info"
               showIcon
               style={{ marginTop: '-16px', marginBottom: '24px' }}
