@@ -9,7 +9,6 @@ import {
   theme,
 } from "antd";
 import { useNavigate } from "react-router";
-import { useTheme } from '@refinedev/antd';
 import { CommentModal } from '../../components/CommentModal';
 
 const { Title, Text } = Typography;

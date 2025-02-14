@@ -1,6 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { Card, Typography, Table, Button, Modal, Form, Input, Space, Tabs, theme } from "antd";
-import { EditOutlined, SaveOutlined, CloseOutlined, InfoCircleOutlined } from "@ant-design/icons";
+import {
+  Card,
+  Typography,
+  Table,
+  Button,
+  Modal,
+  Form,
+  Input,
+  Space,
+  Tabs,
+  theme,
+} from "antd";
+import {
+  EditOutlined,
+  SaveOutlined,
+  CloseOutlined,
+  InfoCircleOutlined,
+} from "@ant-design/icons";
 import { Tooltip } from "antd"; // Add this line to import Tooltip from antd
 
 const { Title } = Typography;
@@ -70,26 +86,41 @@ const EditModal: React.FC<EditModalProps> = ({
   return (
     <Modal
       title={
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
           <span>GITU Config Updates</span>
-          <CloseOutlined onClick={onCancel} style={{ cursor: 'pointer' }} />
+          <CloseOutlined onClick={onCancel} style={{ cursor: "pointer" }} />
         </div>
       }
       open={visible}
       onCancel={onCancel}
       footer={[
-        <Button key="cancel" onClick={onCancel} style={{ 
-          height: '40px',
-          width: '120px',
-          backgroundColor: '#E9ECEF'
-        }}>
+        <Button
+          key="cancel"
+          onClick={onCancel}
+          style={{
+            height: "40px",
+            width: "120px",
+            backgroundColor: "#E9ECEF",
+          }}
+        >
           CANCEL
         </Button>,
-        <Button key="save" type="primary" onClick={() => form.submit()} style={{
-          height: '40px',
-          width: '120px',
-          backgroundColor: '#00C853'
-        }}>
+        <Button
+          key="save"
+          type="primary"
+          onClick={() => form.submit()}
+          style={{
+            height: "40px",
+            width: "120px",
+            backgroundColor: "#00C853",
+          }}
+        >
           SAVE
         </Button>,
       ]}
@@ -105,12 +136,15 @@ const EditModal: React.FC<EditModalProps> = ({
           label={
             <Tooltip title="Merchant/Biller">
               <span>
-                Provider <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
+                Provider{" "}
+                <InfoCircleOutlined
+                  style={{ color: "#1890ff", marginLeft: 4 }}
+                />
               </span>
             </Tooltip>
           }
           name="provider"
-          rules={[{ required: true, message: 'Please input provider!' }]}
+          rules={[{ required: true, message: "Please input provider!" }]}
         >
           <Input placeholder="Enter provider" />
         </Form.Item>
@@ -119,12 +153,15 @@ const EditModal: React.FC<EditModalProps> = ({
           label={
             <Tooltip title="Type of Transaction">
               <span>
-                Type <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
+                Type{" "}
+                <InfoCircleOutlined
+                  style={{ color: "#1890ff", marginLeft: 4 }}
+                />
               </span>
             </Tooltip>
           }
           name="type"
-          rules={[{ required: true, message: 'Please input type!' }]}
+          rules={[{ required: true, message: "Please input type!" }]}
         >
           <Input placeholder="Enter type" />
         </Form.Item>
@@ -133,12 +170,15 @@ const EditModal: React.FC<EditModalProps> = ({
           label={
             <Tooltip title="General Ledger Account">
               <span>
-                GL Account(FLD3) <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
+                GL Account(FLD3){" "}
+                <InfoCircleOutlined
+                  style={{ color: "#1890ff", marginLeft: 4 }}
+                />
               </span>
             </Tooltip>
           }
           name="glAccount"
-          rules={[{ required: true, message: 'Please input GL Account!' }]}
+          rules={[{ required: true, message: "Please input GL Account!" }]}
         >
           <Input placeholder="Enter GL Account" />
         </Form.Item>
@@ -147,12 +187,20 @@ const EditModal: React.FC<EditModalProps> = ({
           label={
             <Tooltip title="Merchant's Online Account with ADCB">
               <span>
-                Debit Account Number / IBAN (FLD50) <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
+                Debit Account Number / IBAN (FLD50){" "}
+                <InfoCircleOutlined
+                  style={{ color: "#1890ff", marginLeft: 4 }}
+                />
               </span>
             </Tooltip>
           }
           name="debitAccount"
-          rules={[{ required: true, message: 'Please input Debit Account Number / IBAN!' }]}
+          rules={[
+            {
+              required: true,
+              message: "Please input Debit Account Number / IBAN!",
+            },
+          ]}
         >
           <Input placeholder="Enter Debit Account Number / IBAN" />
         </Form.Item>
@@ -161,12 +209,15 @@ const EditModal: React.FC<EditModalProps> = ({
           label={
             <Tooltip title="General Ledger Account Branch Code">
               <span>
-                GL Branch Code <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
+                GL Branch Code{" "}
+                <InfoCircleOutlined
+                  style={{ color: "#1890ff", marginLeft: 4 }}
+                />
               </span>
             </Tooltip>
           }
           name="glBranchCode"
-          rules={[{ required: true, message: 'Please input GL Branch Code!' }]}
+          rules={[{ required: true, message: "Please input GL Branch Code!" }]}
         >
           <Input placeholder="Enter GL Branch Code" />
         </Form.Item>
@@ -175,12 +226,17 @@ const EditModal: React.FC<EditModalProps> = ({
           label={
             <Tooltip title="Merchant's Online Account Branch Code">
               <span>
-                Online A/c Branch Code(FLD196) <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
+                Online A/c Branch Code(FLD196){" "}
+                <InfoCircleOutlined
+                  style={{ color: "#1890ff", marginLeft: 4 }}
+                />
               </span>
             </Tooltip>
           }
           name="onlineAcBranchCode"
-          rules={[{ required: true, message: 'Please input Online A/c Branch Code!' }]}
+          rules={[
+            { required: true, message: "Please input Online A/c Branch Code!" },
+          ]}
         >
           <Input placeholder="Enter Online A/c Branch Code" />
         </Form.Item>
@@ -189,12 +245,15 @@ const EditModal: React.FC<EditModalProps> = ({
           label={
             <Tooltip title="General Ledger Account Cost Center">
               <span>
-                GL Cost Center <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
+                GL Cost Center{" "}
+                <InfoCircleOutlined
+                  style={{ color: "#1890ff", marginLeft: 4 }}
+                />
               </span>
             </Tooltip>
           }
           name="glCostCenter"
-          rules={[{ required: true, message: 'Please input GL Cost Center!' }]}
+          rules={[{ required: true, message: "Please input GL Cost Center!" }]}
         >
           <Input placeholder="Enter GL Cost Center" />
         </Form.Item>
@@ -203,12 +262,15 @@ const EditModal: React.FC<EditModalProps> = ({
           label={
             <Tooltip title="Merchant's Currency">
               <span>
-                Currency <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
+                Currency{" "}
+                <InfoCircleOutlined
+                  style={{ color: "#1890ff", marginLeft: 4 }}
+                />
               </span>
             </Tooltip>
           }
           name="currency"
-          rules={[{ required: true, message: 'Please input Currency!' }]}
+          rules={[{ required: true, message: "Please input Currency!" }]}
         >
           <Input placeholder="Enter Currency" />
         </Form.Item>
@@ -219,42 +281,46 @@ const EditModal: React.FC<EditModalProps> = ({
 
 export const GituConfig: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [selectedRecord, setSelectedRecord] = useState<GituConfigData | undefined>();
+  const [selectedRecord, setSelectedRecord] = useState<
+    GituConfigData | undefined
+  >();
   const [oneTimeConfigForm] = Form.useForm();
-  const [editingKey, setEditingKey] = useState('');
-  const [editedData, setEditedData] = useState<{ [key: string]: { mnemonicCode?: string; transactionNarration?: string } }>({});
+  const [editingKey, setEditingKey] = useState("");
+  const [editedData, setEditedData] = useState<{
+    [key: string]: { mnemonicCode?: string; transactionNarration?: string };
+  }>({});
   const [expandedRowKey, setExpandedRowKey] = useState<string | undefined>();
   const { token } = theme.useToken();
 
   // Define constants for dropdown options
   const accountTypes = [
-    'MBME_BILL_PAYMENT',
-    'FISERVE_POOL',
-    'ADCB_TP_POOL',
-    'ADCB_TP_INCOME',
-    'ADCB_NI_POOL',
-    'MBME_DONATE_TP',
-    'ADCB_TP_DONATE_INCOME'
+    "MBME_BILL_PAYMENT",
+    "FISERVE_POOL",
+    "ADCB_TP_POOL",
+    "ADCB_TP_INCOME",
+    "ADCB_NI_POOL",
+    "MBME_DONATE_TP",
+    "ADCB_TP_DONATE_INCOME",
   ];
 
-  const mnemonicCodes = ['1008', '1408', '3073'];
+  const mnemonicCodes = ["1008", "1408", "3073"];
 
   const initialOneTimeConfigValues: Partial<GituOneTimeConfig> = {
-    interfaceCode: 'TPSAPP',
-    fileName: 'TPSAPP',
-    externalSystem: 'TPSAPP',
-    functionId: 'IFDGIMBU',
-    processNo: '1',
-    timezone: 'Asia/Dubai',
-    masterStatus: 'U',
-    masterAction: 'N',
-    masterBranchCode: '51',
-    gituFileNameDatetimeFormat: 'yyyyMMdd_hhmmss',
-    uploadDetailTable: 'GITU_UPLOAD_DETAIL',
-    uploadMasterTable: 'GITU_UPLOAD_MASTER',
-    merchantId: '',
-    settlementAccountNumber: '',
-    settlementFileCid: '',
+    interfaceCode: "TPSAPP",
+    fileName: "TPSAPP",
+    externalSystem: "TPSAPP",
+    functionId: "IFDGIMBU",
+    processNo: "1",
+    timezone: "Asia/Dubai",
+    masterStatus: "U",
+    masterAction: "N",
+    masterBranchCode: "51",
+    gituFileNameDatetimeFormat: "yyyyMMdd_hhmmss",
+    uploadDetailTable: "GITU_UPLOAD_DETAIL",
+    uploadMasterTable: "GITU_UPLOAD_MASTER",
+    merchantId: "",
+    settlementAccountNumber: "",
+    settlementFileCid: "",
   };
 
   useEffect(() => {
@@ -272,13 +338,13 @@ export const GituConfig: React.FC = () => {
   };
 
   const handleSave = (values: any) => {
-    console.log('Saved values:', values);
+    console.log("Saved values:", values);
     setIsModalVisible(false);
     setSelectedRecord(undefined);
   };
 
   const handleOneTimeConfigUpdate = (values: GituOneTimeConfig) => {
-    console.log('One Time Config values:', values);
+    console.log("One Time Config values:", values);
     // Add API call here to update the values
   };
 
@@ -326,10 +392,12 @@ export const GituConfig: React.FC = () => {
     {
       title: "Actions",
       key: "actions",
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       render: (_, record: GituConfigData) => (
-        <Button 
-          type="link" 
-          icon={<EditOutlined />} 
+        <Button
+          type="link"
+          icon={<EditOutlined />}
           onClick={() => handleEdit(record)}
         >
           Edit
@@ -448,24 +516,50 @@ export const GituConfig: React.FC = () => {
       glCostCenter: "181",
       currency: "AED",
       actions: "",
-    }
+    },
   ];
 
   const expandedRowRender = (record: GituConfigData) => {
-    const getRowKey = (row: GituDetailData) => `${record.provider}_${row.sequenceNumber}`;
+    const getRowKey = (row: GituDetailData) =>
+      `${record.provider}_${row.sequenceNumber}`;
 
     const detailColumns = [
-      { title: 'Posting Type', dataIndex: 'postingType', key: 'postingType', width: '10%' },
-      { title: 'Payment Mode', dataIndex: 'paymentMode', key: 'paymentMode', width: '10%' },
-      { title: 'Operation', dataIndex: 'operation', key: 'operation', width: '8%' },
-      { title: 'Seq No', dataIndex: 'sequenceNumber', key: 'sequenceNumber', width: '8%' },
-      { title: 'Account Type', dataIndex: 'accountType', key: 'accountType', width: '25%' },
-      { title: 'Account', dataIndex: 'account', key: 'account', width: '14%' },
       {
-        title: 'Mnemonic Code',
-        dataIndex: 'mnemonicCode',
-        key: 'mnemonicCode',
-        width: '10%',
+        title: "Posting Type",
+        dataIndex: "postingType",
+        key: "postingType",
+        width: "10%",
+      },
+      {
+        title: "Payment Mode",
+        dataIndex: "paymentMode",
+        key: "paymentMode",
+        width: "10%",
+      },
+      {
+        title: "Operation",
+        dataIndex: "operation",
+        key: "operation",
+        width: "8%",
+      },
+      {
+        title: "Seq No",
+        dataIndex: "sequenceNumber",
+        key: "sequenceNumber",
+        width: "8%",
+      },
+      {
+        title: "Account Type",
+        dataIndex: "accountType",
+        key: "accountType",
+        width: "25%",
+      },
+      { title: "Account", dataIndex: "account", key: "account", width: "14%" },
+      {
+        title: "Mnemonic Code",
+        dataIndex: "mnemonicCode",
+        key: "mnemonicCode",
+        width: "10%",
         render: (_: any, row: GituDetailData) => {
           const rowKey = getRowKey(row);
           const isEditing = editingKey === rowKey;
@@ -473,68 +567,74 @@ export const GituConfig: React.FC = () => {
             <Input
               value={editedData[rowKey]?.mnemonicCode ?? row.mnemonicCode}
               onChange={(e) => {
-                setEditedData(prev => ({
+                setEditedData((prev) => ({
                   ...prev,
-                  [rowKey]: { ...prev[rowKey], mnemonicCode: e.target.value }
+                  [rowKey]: { ...prev[rowKey], mnemonicCode: e.target.value },
                 }));
               }}
             />
           ) : (
             <span>{row.mnemonicCode}</span>
           );
-        }
+        },
       },
       {
-        title: 'Transaction Narration',
-        dataIndex: 'transactionNarration',
-        key: 'transactionNarration',
-        width: '15%',
+        title: "Transaction Narration",
+        dataIndex: "transactionNarration",
+        key: "transactionNarration",
+        width: "15%",
         render: (_: any, row: GituDetailData) => {
           const rowKey = getRowKey(row);
           const isEditing = editingKey === rowKey;
           return isEditing ? (
             <Input
-              value={editedData[rowKey]?.transactionNarration ?? row.transactionNarration}
+              value={
+                editedData[rowKey]?.transactionNarration ??
+                row.transactionNarration
+              }
               onChange={(e) => {
-                setEditedData(prev => ({
+                setEditedData((prev) => ({
                   ...prev,
-                  [rowKey]: { ...prev[rowKey], transactionNarration: e.target.value }
+                  [rowKey]: {
+                    ...prev[rowKey],
+                    transactionNarration: e.target.value,
+                  },
                 }));
               }}
             />
           ) : (
             <span>{row.transactionNarration}</span>
           );
-        }
+        },
       },
       {
-        title: 'Actions',
-        key: 'actions',
-        width: '10%',
-        fixed: 'right',
+        title: "Actions",
+        key: "actions",
+        width: "10%",
+        fixed: "right",
         render: (_: any, row: GituDetailData) => {
           const rowKey = getRowKey(row);
           const isEditing = editingKey === rowKey;
-          
+
           const handleEdit = (e: React.MouseEvent) => {
             e.stopPropagation();
             setEditingKey(rowKey);
             // Initialize edited data with current values
-            setEditedData(prev => ({
+            setEditedData((prev) => ({
               ...prev,
               [rowKey]: {
                 mnemonicCode: row.mnemonicCode,
-                transactionNarration: row.transactionNarration
-              }
+                transactionNarration: row.transactionNarration,
+              },
             }));
           };
 
           const handleSave = (e: React.MouseEvent) => {
             e.stopPropagation();
-            console.log('Saving changes for row:', rowKey, editedData[rowKey]);
+            console.log("Saving changes for row:", rowKey, editedData[rowKey]);
             // TODO: Add API call to save changes
-            setEditingKey('');
-            setEditedData(prev => {
+            setEditingKey("");
+            setEditedData((prev) => {
               const newData = { ...prev };
               delete newData[rowKey];
               return newData;
@@ -543,8 +643,8 @@ export const GituConfig: React.FC = () => {
 
           const handleCancel = (e: React.MouseEvent) => {
             e.stopPropagation();
-            setEditingKey('');
-            setEditedData(prev => {
+            setEditingKey("");
+            setEditedData((prev) => {
               const newData = { ...prev };
               delete newData[rowKey];
               return newData;
@@ -552,54 +652,65 @@ export const GituConfig: React.FC = () => {
           };
 
           return isEditing ? (
-            <Space onClick={e => e.stopPropagation()}>
+            <Space onClick={(e) => e.stopPropagation()}>
               <SaveOutlined
-                style={{ cursor: 'pointer', color: '#00C853' }}
+                style={{ cursor: "pointer", color: "#00C853" }}
                 onClick={handleSave}
               />
               <CloseOutlined
-                style={{ cursor: 'pointer', color: '#FF5252' }}
+                style={{ cursor: "pointer", color: "#FF5252" }}
                 onClick={handleCancel}
               />
             </Space>
           ) : (
-            <EditOutlined 
-              style={{ cursor: 'pointer', color: token.colorPrimary }} 
+            <EditOutlined
+              style={{ cursor: "pointer", color: token.colorPrimary }}
               onClick={handleEdit}
             />
           );
-        }
-      }
+        },
+      },
     ];
 
     // Generate 10 rows of dummy data for the expanded table
-    const detailData: GituDetailData[] = Array.from({ length: 10 }, (_, index) => ({
-      postingType: Math.random() > 0.5 ? 'PAYMENT' : 'RECON',
-      paymentMode: ['CC', 'DC', 'TP'][Math.floor(Math.random() * 3)],
-      operation: Math.random() > 0.5 ? 'Credit' : 'Debit',
-      sequenceNumber: (index + 1).toString(), // Make sequence numbers unique and sequential
-      accountType: accountTypes[Math.floor(Math.random() * accountTypes.length)],
-      account: record.onlineAccount,
-      mnemonicCode: mnemonicCodes[Math.floor(Math.random() * mnemonicCodes.length)],
-      transactionNarration: `${record.provider} - ${Math.random() > 0.5 ? 'Credit' : 'Debit'} Transaction`,
-    }));
+    const detailData: GituDetailData[] = Array.from(
+      { length: 10 },
+      (_, index) => ({
+        postingType: Math.random() > 0.5 ? "PAYMENT" : "RECON",
+        paymentMode: ["CC", "DC", "TP"][Math.floor(Math.random() * 3)],
+        operation: Math.random() > 0.5 ? "Credit" : "Debit",
+        sequenceNumber: (index + 1).toString(), // Make sequence numbers unique and sequential
+        accountType:
+          accountTypes[Math.floor(Math.random() * accountTypes.length)],
+        account: record.onlineAccount,
+        mnemonicCode:
+          mnemonicCodes[Math.floor(Math.random() * mnemonicCodes.length)],
+        transactionNarration: `${record.provider} - ${
+          Math.random() > 0.5 ? "Credit" : "Debit"
+        } Transaction`,
+      })
+    );
 
     return (
-      <div style={{ 
-        margin: '0 16px', 
-        background: token.colorBgContainer,
-        borderRadius: token.borderRadius,
-        padding: '12px',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
-      }}>
+      <div
+        style={{
+          margin: "0 16px",
+          background: token.colorBgContainer,
+          borderRadius: token.borderRadius,
+          padding: "12px",
+          boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
+        }}
+      >
         <Table
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
           columns={detailColumns}
           dataSource={detailData}
           pagination={{ pageSize: 5 }}
           rowKey={getRowKey}
           size="small"
           scroll={{ x: 1000 }}
-          style={{ width: '100%' }}
+          style={{ width: "100%" }}
         />
       </div>
     );
@@ -607,8 +718,8 @@ export const GituConfig: React.FC = () => {
 
   const items = [
     {
-      key: '1',
-      label: 'GITU Updates',
+      key: "1",
+      label: "GITU Updates",
       children: (
         <div>
           <Table
@@ -628,7 +739,7 @@ export const GituConfig: React.FC = () => {
               showSizeChanger: true,
               showTotal: (total) => `Total ${total} items`,
             }}
-            style={{ width: '100%' }}
+            style={{ width: "100%" }}
           />
           <EditModal
             visible={isModalVisible}
@@ -640,8 +751,8 @@ export const GituConfig: React.FC = () => {
       ),
     },
     {
-      key: '2',
-      label: 'Common Config',
+      key: "2",
+      label: "Common Config",
       children: (
         <div>
           <Form
@@ -649,19 +760,30 @@ export const GituConfig: React.FC = () => {
             layout="vertical"
             onFinish={handleOneTimeConfigUpdate}
             initialValues={initialOneTimeConfigValues}
-            style={{ maxWidth: '100%' }}
+            style={{ maxWidth: "100%" }}
           >
-            <div style={{ display: 'flex', gap: token.padding, marginBottom: token.marginLG }}>
+            <div
+              style={{
+                display: "flex",
+                gap: token.padding,
+                marginBottom: token.marginLG,
+              }}
+            >
               <Form.Item
                 label={
                   <Tooltip title="GITU File Interface Code">
                     <span>
-                      Interface Code <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
+                      Interface Code{" "}
+                      <InfoCircleOutlined
+                        style={{ color: "#1890ff", marginLeft: 4 }}
+                      />
                     </span>
                   </Tooltip>
                 }
                 name="interfaceCode"
-                rules={[{ required: true, message: 'Please input Interface Code!' }]}
+                rules={[
+                  { required: true, message: "Please input Interface Code!" },
+                ]}
                 style={{ flex: 1 }}
               >
                 <Input placeholder="Enter Interface Code" />
@@ -671,12 +793,15 @@ export const GituConfig: React.FC = () => {
                 label={
                   <Tooltip title="GITU File Filename">
                     <span>
-                      File Name <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
+                      File Name{" "}
+                      <InfoCircleOutlined
+                        style={{ color: "#1890ff", marginLeft: 4 }}
+                      />
                     </span>
                   </Tooltip>
                 }
                 name="fileName"
-                rules={[{ required: true, message: 'Please input File Name!' }]}
+                rules={[{ required: true, message: "Please input File Name!" }]}
                 style={{ flex: 1 }}
               >
                 <Input placeholder="Enter File Name" />
@@ -686,29 +811,45 @@ export const GituConfig: React.FC = () => {
                 label={
                   <Tooltip title="GITU External System">
                     <span>
-                      External System <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
+                      External System{" "}
+                      <InfoCircleOutlined
+                        style={{ color: "#1890ff", marginLeft: 4 }}
+                      />
                     </span>
                   </Tooltip>
                 }
                 name="externalSystem"
-                rules={[{ required: true, message: 'Please input External System!' }]}
+                rules={[
+                  { required: true, message: "Please input External System!" },
+                ]}
                 style={{ flex: 1 }}
               >
                 <Input placeholder="Enter External System" />
               </Form.Item>
             </div>
 
-            <div style={{ display: 'flex', gap: token.padding, marginBottom: token.marginLG }}>
+            <div
+              style={{
+                display: "flex",
+                gap: token.padding,
+                marginBottom: token.marginLG,
+              }}
+            >
               <Form.Item
                 label={
                   <Tooltip title="GITU File Function ID">
                     <span>
-                      Function ID <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
+                      Function ID{" "}
+                      <InfoCircleOutlined
+                        style={{ color: "#1890ff", marginLeft: 4 }}
+                      />
                     </span>
                   </Tooltip>
                 }
                 name="functionId"
-                rules={[{ required: true, message: 'Please input Function ID!' }]}
+                rules={[
+                  { required: true, message: "Please input Function ID!" },
+                ]}
                 style={{ flex: 1 }}
               >
                 <Input placeholder="Enter Function ID" />
@@ -718,12 +859,17 @@ export const GituConfig: React.FC = () => {
                 label={
                   <Tooltip title="GITU File Process Number">
                     <span>
-                      Process No <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
+                      Process No{" "}
+                      <InfoCircleOutlined
+                        style={{ color: "#1890ff", marginLeft: 4 }}
+                      />
                     </span>
                   </Tooltip>
                 }
                 name="processNo"
-                rules={[{ required: true, message: 'Please input Process No!' }]}
+                rules={[
+                  { required: true, message: "Please input Process No!" },
+                ]}
                 style={{ flex: 1 }}
               >
                 <Input placeholder="Enter Process No" />
@@ -733,29 +879,45 @@ export const GituConfig: React.FC = () => {
                 label={
                   <Tooltip title="GITU File Master record statusm">
                     <span>
-                      Master Status <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
+                      Master Status{" "}
+                      <InfoCircleOutlined
+                        style={{ color: "#1890ff", marginLeft: 4 }}
+                      />
                     </span>
                   </Tooltip>
                 }
                 name="masterStatus"
-                rules={[{ required: true, message: 'Please input Master Status!' }]}
+                rules={[
+                  { required: true, message: "Please input Master Status!" },
+                ]}
                 style={{ flex: 1 }}
               >
                 <Input placeholder="Enter Master Status" />
               </Form.Item>
             </div>
 
-            <div style={{ display: 'flex', gap: token.padding, marginBottom: token.marginLG }}>
+            <div
+              style={{
+                display: "flex",
+                gap: token.padding,
+                marginBottom: token.marginLG,
+              }}
+            >
               <Form.Item
                 label={
                   <Tooltip title="GITU File Master record action">
                     <span>
-                      Master Action <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
+                      Master Action{" "}
+                      <InfoCircleOutlined
+                        style={{ color: "#1890ff", marginLeft: 4 }}
+                      />
                     </span>
                   </Tooltip>
                 }
                 name="masterAction"
-                rules={[{ required: true, message: 'Please input Master Action!' }]}
+                rules={[
+                  { required: true, message: "Please input Master Action!" },
+                ]}
                 style={{ flex: 1 }}
               >
                 <Input placeholder="Enter Master Action" />
@@ -765,12 +927,20 @@ export const GituConfig: React.FC = () => {
                 label={
                   <Tooltip title="GITU File Master record Branch Code">
                     <span>
-                      Master Branch Code <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
+                      Master Branch Code{" "}
+                      <InfoCircleOutlined
+                        style={{ color: "#1890ff", marginLeft: 4 }}
+                      />
                     </span>
                   </Tooltip>
                 }
                 name="masterBranchCode"
-                rules={[{ required: true, message: 'Please input Master Branch Code!' }]}
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input Master Branch Code!",
+                  },
+                ]}
                 style={{ flex: 1 }}
               >
                 <Input placeholder="Enter Master Branch Code" />
@@ -780,29 +950,51 @@ export const GituConfig: React.FC = () => {
                 label={
                   <Tooltip title="GITU upload detail target table">
                     <span>
-                      Upload Detail Table <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
+                      Upload Detail Table{" "}
+                      <InfoCircleOutlined
+                        style={{ color: "#1890ff", marginLeft: 4 }}
+                      />
                     </span>
                   </Tooltip>
                 }
                 name="uploadDetailTable"
-                rules={[{ required: true, message: 'Please input Upload Detail Table!' }]}
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input Upload Detail Table!",
+                  },
+                ]}
                 style={{ flex: 1 }}
               >
                 <Input placeholder="Enter Upload Detail Table" />
               </Form.Item>
             </div>
 
-            <div style={{ display: 'flex', gap: token.padding, marginBottom: token.marginLG }}>
+            <div
+              style={{
+                display: "flex",
+                gap: token.padding,
+                marginBottom: token.marginLG,
+              }}
+            >
               <Form.Item
                 label={
                   <Tooltip title="GITU upload master target table">
                     <span>
-                      Upload Master Table <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
+                      Upload Master Table{" "}
+                      <InfoCircleOutlined
+                        style={{ color: "#1890ff", marginLeft: 4 }}
+                      />
                     </span>
                   </Tooltip>
                 }
                 name="uploadMasterTable"
-                rules={[{ required: true, message: 'Please input Upload Master Table!' }]}
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input Upload Master Table!",
+                  },
+                ]}
                 style={{ flex: 1 }}
               >
                 <Input placeholder="Enter Upload Master Table" />
@@ -812,12 +1004,20 @@ export const GituConfig: React.FC = () => {
                 label={
                   <Tooltip title="GITU File Settlement Account Number">
                     <span>
-                      Settlement Account Number <InfoCircleOutlined style={{ color: '#1890ff', marginLeft: 4 }} />
+                      Settlement Account Number{" "}
+                      <InfoCircleOutlined
+                        style={{ color: "#1890ff", marginLeft: 4 }}
+                      />
                     </span>
                   </Tooltip>
                 }
                 name="settlementAccountNumber"
-                rules={[{ required: true, message: 'Please input Settlement Account Number!' }]}
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input Settlement Account Number!",
+                  },
+                ]}
                 style={{ flex: 1 }}
               >
                 <Input placeholder="Enter Settlement Account Number" />
@@ -825,13 +1025,13 @@ export const GituConfig: React.FC = () => {
             </div>
 
             <Form.Item>
-              <Button 
-                type="primary" 
+              <Button
+                type="primary"
                 htmlType="submit"
                 style={{
-                  height: '40px',
-                  width: '120px',
-                  backgroundColor: '#00C853'
+                  height: "40px",
+                  width: "120px",
+                  backgroundColor: "#00C853",
                 }}
               >
                 Update

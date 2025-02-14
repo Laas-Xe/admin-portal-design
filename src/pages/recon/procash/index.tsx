@@ -1,6 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Card, Typography, Table, Button, Modal, Form, Input, Tabs, theme, Tooltip } from "antd";
-import { EditOutlined, CloseOutlined, InfoCircleOutlined } from "@ant-design/icons";
+import {
+  Card,
+  Typography,
+  Table,
+  Button,
+  Modal,
+  Form,
+  Input,
+  Tabs,
+  theme,
+  Tooltip,
+} from "antd";
+import {
+  EditOutlined,
+  CloseOutlined,
+  InfoCircleOutlined,
+} from "@ant-design/icons";
 
 const { Title } = Typography;
 
@@ -59,26 +74,41 @@ const EditModal: React.FC<EditModalProps> = ({
   return (
     <Modal
       title={
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
           <span>ProCash Updates</span>
-          <CloseOutlined onClick={onCancel} style={{ cursor: 'pointer' }} />
+          <CloseOutlined onClick={onCancel} style={{ cursor: "pointer" }} />
         </div>
       }
       open={visible}
       onCancel={onCancel}
       footer={[
-        <Button key="cancel" onClick={onCancel} style={{ 
-          height: '40px',
-          width: '120px',
-          backgroundColor: '#E9ECEF'
-        }}>
+        <Button
+          key="cancel"
+          onClick={onCancel}
+          style={{
+            height: "40px",
+            width: "120px",
+            backgroundColor: "#E9ECEF",
+          }}
+        >
           CANCEL
         </Button>,
-        <Button key="save" type="primary" onClick={() => form.submit()} style={{
-          height: '40px',
-          width: '120px',
-          backgroundColor: '#00C853'
-        }}>
+        <Button
+          key="save"
+          type="primary"
+          onClick={() => form.submit()}
+          style={{
+            height: "40px",
+            width: "120px",
+            backgroundColor: "#00C853",
+          }}
+        >
           SAVE
         </Button>,
       ]}
@@ -100,7 +130,7 @@ const EditModal: React.FC<EditModalProps> = ({
             </span>
           }
           name="provider"
-          rules={[{ required: true, message: 'Please input provider!' }]}
+          rules={[{ required: true, message: "Please input provider!" }]}
         >
           <Input placeholder="Enter provider" />
         </Form.Item>
@@ -115,7 +145,7 @@ const EditModal: React.FC<EditModalProps> = ({
             </span>
           }
           name="onlineAccount"
-          rules={[{ required: true, message: 'Please input online account!' }]}
+          rules={[{ required: true, message: "Please input online account!" }]}
         >
           <Input placeholder="Enter online account" />
         </Form.Item>
@@ -130,7 +160,12 @@ const EditModal: React.FC<EditModalProps> = ({
             </span>
           }
           name="beneficiaryAccountNumber"
-          rules={[{ required: true, message: 'Please input beneficiary account number!' }]}
+          rules={[
+            {
+              required: true,
+              message: "Please input beneficiary account number!",
+            },
+          ]}
         >
           <Input placeholder="Enter beneficiary account number" />
         </Form.Item>
@@ -145,7 +180,9 @@ const EditModal: React.FC<EditModalProps> = ({
             </span>
           }
           name="beneficiaryName"
-          rules={[{ required: true, message: 'Please input beneficiary name!' }]}
+          rules={[
+            { required: true, message: "Please input beneficiary name!" },
+          ]}
         >
           <Input placeholder="Enter beneficiary name" />
         </Form.Item>
@@ -160,7 +197,9 @@ const EditModal: React.FC<EditModalProps> = ({
             </span>
           }
           name="beneficiaryBankName"
-          rules={[{ required: true, message: 'Please input beneficiary bank name!' }]}
+          rules={[
+            { required: true, message: "Please input beneficiary bank name!" },
+          ]}
         >
           <Input placeholder="Enter beneficiary bank name" />
         </Form.Item>
@@ -175,7 +214,7 @@ const EditModal: React.FC<EditModalProps> = ({
             </span>
           }
           name="remittanceCode"
-          rules={[{ required: true, message: 'Please input remittance code!' }]}
+          rules={[{ required: true, message: "Please input remittance code!" }]}
         >
           <Input placeholder="Enter remittance code" />
         </Form.Item>
@@ -184,17 +223,19 @@ const EditModal: React.FC<EditModalProps> = ({
           label={
             <span>
               Payment Type
-              <Tooltip title={`Type of Payment – can be one of
+              <Tooltip
+                title={`Type of Payment – can be one of
 "IFT" (Internal Fund Transfer) - within ADCB
 "EFD" (External Fund Trf Domestic) – only AED within UAE via UAEFTS
 "EFI" (External Fund Trf Intl.) – non ADCB, non AED within or outside
-UAE via SWIFT`}>
+UAE via SWIFT`}
+              >
                 <InfoCircleOutlined style={{ marginLeft: 8 }} />
               </Tooltip>
             </span>
           }
           name="paymentType"
-          rules={[{ required: true, message: 'Please input payment type!' }]}
+          rules={[{ required: true, message: "Please input payment type!" }]}
         >
           <Input placeholder="Enter payment type" />
         </Form.Item>
@@ -287,8 +328,10 @@ UAE via SWIFT`}>
           label={
             <span>
               Beneficiary Bank SWIFT Code / Routing Code (Fld57)
-              <Tooltip title="11-character SWIFT address of the intermediary bank
-8 character SWIFT address should be suffixed with “XXX”">
+              <Tooltip
+                title="11-character SWIFT address of the intermediary bank
+8 character SWIFT address should be suffixed with “XXX”"
+              >
                 <InfoCircleOutlined style={{ marginLeft: 8 }} />
               </Tooltip>
             </span>
@@ -442,7 +485,9 @@ UAE via SWIFT`}>
           label={
             <span>
               Intermediary Bank SWIFT Code (Fld56)
-              <Tooltip title={`11-character SWIFT address of the intermediary bank\n8 character SWIFT address should be suffixed with “XXX”`}>
+              <Tooltip
+                title={`11-character SWIFT address of the intermediary bank\n8 character SWIFT address should be suffixed with “XXX”`}
+              >
                 <InfoCircleOutlined style={{ marginLeft: 8 }} />
               </Tooltip>
             </span>
@@ -470,11 +515,13 @@ UAE via SWIFT`}>
           label={
             <span>
               Bene Bank Sort/ABA/NEFT Code
-              <Tooltip title={`For Australia (AUD) - Bank Code (6 digit)
+              <Tooltip
+                title={`For Australia (AUD) - Bank Code (6 digit)
 For Canada (CAD) - Institution Number (should have preceding 0 if the number is less than 4 digits) and Transit Number (5 digit)
 For Great Britain (GBP) - Sort Code (6 digit)
 For India (INR) - Full Beneficiary Bank Address with IFSC Code (11 digits)
-For USA (USD) - Fedwire or ABA number (9 digit) For South Africa (ZAR) - Bank Code (6 digit)`}>
+For USA (USD) - Fedwire or ABA number (9 digit) For South Africa (ZAR) - Bank Code (6 digit)`}
+              >
                 <InfoCircleOutlined style={{ marginLeft: 8 }} />
               </Tooltip>
             </span>
@@ -494,12 +541,14 @@ interface ProCashConfigData {
 
 export const ProCashUpdates: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [selectedRecord, setSelectedRecord] = useState<ProCashData | undefined>();
+  const [selectedRecord, setSelectedRecord] = useState<
+    ProCashData | undefined
+  >();
   const [configForm] = Form.useForm();
   const { token } = theme.useToken();
 
   const initialConfigValues: ProCashConfigData = {
-    settlementFileCid: '13834073',
+    settlementFileCid: "13834073",
   };
 
   useEffect(() => {
@@ -517,13 +566,13 @@ export const ProCashUpdates: React.FC = () => {
   };
 
   const handleSave = (values: ProCashData) => {
-    console.log('Saved values:', values);
+    console.log("Saved values:", values);
     setIsModalVisible(false);
     setSelectedRecord(undefined);
   };
 
   const handleConfigUpdate = (values: ProCashConfigData) => {
-    console.log('Config values:', values);
+    console.log("Config values:", values);
     // Add API call here to update the values
   };
 
@@ -566,10 +615,12 @@ export const ProCashUpdates: React.FC = () => {
     {
       title: "Actions",
       key: "actions",
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       render: (_, record: ProCashData) => (
-        <Button 
-          type="link" 
-          icon={<EditOutlined />} 
+        <Button
+          type="link"
+          icon={<EditOutlined />}
           onClick={() => handleEdit(record)}
         >
           Edit
@@ -633,13 +684,13 @@ export const ProCashUpdates: React.FC = () => {
 
   const items = [
     {
-      key: '1',
-      label: 'ProCash Updates',
+      key: "1",
+      label: "ProCash Updates",
       children: (
         <div>
-          <Table 
-            columns={columns} 
-            dataSource={data} 
+          <Table
+            columns={columns}
+            dataSource={data}
             rowKey={(record) => record.beneficiaryAccountNumber}
             pagination={{
               pageSize: 10,
@@ -657,15 +708,15 @@ export const ProCashUpdates: React.FC = () => {
       ),
     },
     {
-      key: '2',
-      label: 'ProCash Config',
+      key: "2",
+      label: "ProCash Config",
       children: (
         <div>
           <Form
             form={configForm}
             layout="vertical"
             onFinish={handleConfigUpdate}
-            style={{ maxWidth: '100%' }}
+            style={{ maxWidth: "100%" }}
           >
             <Form.Item
               label={
@@ -677,20 +728,25 @@ export const ProCashUpdates: React.FC = () => {
                 </span>
               }
               name="settlementFileCid"
-              rules={[{ required: true, message: 'Please input settlement.file.cid!' }]}
-              style={{ maxWidth: '400px' }}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input settlement.file.cid!",
+                },
+              ]}
+              style={{ maxWidth: "400px" }}
             >
               <Input placeholder="Enter settlement.file.cid" />
             </Form.Item>
 
             <Form.Item>
-              <Button 
-                type="primary" 
+              <Button
+                type="primary"
                 htmlType="submit"
                 style={{
-                  height: '40px',
-                  width: '120px',
-                  backgroundColor: '#00C853'
+                  height: "40px",
+                  width: "120px",
+                  backgroundColor: "#00C853",
                 }}
               >
                 Update
