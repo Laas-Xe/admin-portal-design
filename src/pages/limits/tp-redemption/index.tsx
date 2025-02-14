@@ -9,7 +9,7 @@ import {
   Col,
   Space,
 } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 const { Title } = Typography;
 

@@ -11,7 +11,7 @@ import {
   Modal
 } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 const { Title, Text } = Typography;
 

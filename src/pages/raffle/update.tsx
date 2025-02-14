@@ -13,7 +13,7 @@ import {
   theme,
   notification,
 } from "antd";
-import { useNavigate, useParams, Navigate } from "react-router-dom";
+import { useNavigate, useParams, Navigate } from "react-router";
 
 const { Title } = Typography;
 const { TextArea } = Input;

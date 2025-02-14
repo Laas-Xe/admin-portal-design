@@ -12,7 +12,7 @@ import {
   Space,
   theme,
 } from "antd";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 const { Title } = Typography;
 const { TextArea } = Input;
