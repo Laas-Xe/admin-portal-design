@@ -17,8 +17,6 @@ import dayjs from 'dayjs';
 const { Title } = Typography;
 
 interface TransactionBonusFormData {
-  billerId: string;
-  subBillerId: string;
   amount: string;
   numberOfTransactions: string;
   duration: string;
@@ -32,8 +30,6 @@ export const TransactionBonus: React.FC = () => {
   const [isActive, setIsActive] = useState(false);
 
   const initialValues: Partial<TransactionBonusFormData> = {
-    billerId: 'BILL789012',
-    subBillerId: 'SUB345678',
     amount: '1000',
     numberOfTransactions: '5',
     duration: 'monthly',
@@ -90,26 +86,6 @@ export const TransactionBonus: React.FC = () => {
         style={{ maxWidth: '100%' }}
         initialValues={initialValues}
       >
-        <div style={{ display: 'flex', gap: token.padding, marginBottom: token.marginLG }}>
-          <Form.Item
-            label={<span style={{ color: token.colorTextSecondary }}>Bonus Biller ID</span>}
-            name="billerId"
-            rules={[{ required: true, message: 'Please input Biller ID' }]}
-            style={{ flex: 1 }}
-          >
-            <Input />
-          </Form.Item>
-
-          <Form.Item
-            label={<span style={{ color: token.colorTextSecondary }}>Bonus Sub-Biller ID</span>}
-            name="subBillerId"
-            rules={[{ required: true, message: 'Please input Sub-Biller ID' }]}
-            style={{ flex: 1 }}
-          >
-            <Input />
-          </Form.Item>
-        </div>
-
         <div style={{ display: 'flex', gap: token.padding, marginBottom: token.marginLG }}>
           <Form.Item
             label={<span style={{ color: token.colorTextSecondary }}>Amount (AED)</span>}

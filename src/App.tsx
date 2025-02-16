@@ -36,7 +36,7 @@ import { UpdateRaffle } from "./pages/raffle/update";
 import { BonusList } from "./pages/bonus-list";
 import { GituConfig } from "./pages/recon/gitu-config";
 import { ProCashUpdates } from "./pages/recon/procash";
-import { Reports } from "./pages/reports";
+import Reports from "./pages/reports";
 import { ReconciliationReport } from "./pages/reports/reconciliation-report";
 import { PaymentTransactionReport } from "./pages/reports/payment-transaction-report";
 import { LaasUserRegistrationReport } from "./pages/reports/laas-user-registration-report";
@@ -55,11 +55,12 @@ import {
   DisconnectOutlined,
   IdcardOutlined,
   FileTextOutlined,
+  LogoutOutlined,
 } from "@ant-design/icons";
 
 const siderMenuItems = [
   {
-    key: "/",
+    key: "/dashboard",
     icon: <DashboardOutlined />,
     label: "Dashboard",
   },
@@ -67,40 +68,11 @@ const siderMenuItems = [
     key: "/bonus",
     icon: <GiftOutlined />,
     label: "Bonus",
-    children: [
-      {
-        key: "/bonus/list",
-        label: "List",
-      },
-      {
-        key: "/bonus/registration",
-        label: "Registration Bonus",
-        children: [
-          {
-            key: "/bonus/registration/maker",
-            label: "Maker",
-          },
-          {
-            key: "/bonus/registration/checker",
-            label: "Checker",
-          },
-        ],
-      },
-      {
-        key: "/bonus/transaction",
-        label: "Transaction Bonus",
-        children: [
-          {
-            key: "/bonus/transaction/maker",
-            label: "Maker",
-          },
-          {
-            key: "/bonus/transaction/checker",
-            label: "Checker",
-          },
-        ],
-      },
-    ],
+  },
+  {
+    key: "/recon",
+    icon: <ReconciliationOutlined />,
+    label: "Recon",
   },
   {
     key: "/raffle",
@@ -108,49 +80,19 @@ const siderMenuItems = [
     label: "Raffle",
   },
   {
-    key: "/rates",
-    icon: <PercentageOutlined />,
-    label: "Rates",
-    children: [
-      {
-        key: "/rates/global",
-        label: "Global",
-      },
-      {
-        key: "/rates/partner",
-        label: "Partner",
-      },
-    ],
-  },
-  {
-    key: "/recon",
-    icon: <ReconciliationOutlined />,
-    label: "Recon",
-    children: [
-      {
-        key: "/recon/gitu-config",
-        label: "GITU Config Updates",
-      },
-      {
-        key: "/recon/procash",
-        label: "ProCash Updates",
-      },
-    ],
-  },
-  {
     key: "/limits",
     icon: <ControlOutlined />,
     label: "Limits",
-    children: [
-      {
-        key: "/limits/transaction",
-        label: "Transaction",
-      },
-      {
-        key: "/limits/tp-redemption",
-        label: "TP Redemption",
-      },
-    ],
+  },
+  {
+    key: "/reports",
+    icon: <FileTextOutlined />,
+    label: "Reports",
+  },
+  {
+    key: "/rates",
+    icon: <PercentageOutlined />,
+    label: "% Rates",
   },
   {
     key: "/otp-locking",
@@ -163,11 +105,6 @@ const siderMenuItems = [
     label: "Cooling Period",
   },
   {
-    key: "/roles-rights",
-    icon: <TeamOutlined />,
-    label: "Roles & Rights",
-  },
-  {
     key: "/device-delinking",
     icon: <DisconnectOutlined />,
     label: "Device De-linking",
@@ -175,13 +112,18 @@ const siderMenuItems = [
   {
     key: "/biller-subbiller",
     icon: <IdcardOutlined />,
-    label: "Biller Sub-Biller ID",
+    label: "Biller & Sub Biller ID",
   },
   {
-    key: "/reports",
-    icon: <FileTextOutlined />,
-    label: "Reports",
+    key: "/roles-rights",
+    icon: <TeamOutlined />,
+    label: "Roles & Rights",
   },
+  {
+    key: "/logout",
+    icon: <LogoutOutlined />,
+    label: "Logout",
+  }
 ];
 
 function App() {
@@ -214,6 +156,86 @@ function App() {
                     },
                   },
                   {
+                    name: "recon",
+                    list: "/recon",
+                    meta: {
+                      label: "Recon",
+                      icon: <ReconciliationOutlined />,
+                    },
+                  },
+                  {
+                    name: "raffle",
+                    list: "/raffle",
+                    meta: {
+                      label: "Raffle",
+                      icon: <GiftOutlined />,
+                    },
+                  },
+                  {
+                    name: "limits",
+                    list: "/limits",
+                    meta: {
+                      label: "Limits",
+                      icon: <ControlOutlined />,
+                    },
+                  },
+                  {
+                    name: "reports",
+                    list: "/reports",
+                    meta: {
+                      label: "Reports",
+                      icon: <FileTextOutlined />,
+                    },
+                  },
+                  {
+                    name: "rates",
+                    list: "/rates",
+                    meta: {
+                      label: "% Rates",
+                      icon: <PercentageOutlined />,
+                    },
+                  },
+                  {
+                    name: "otp-locking",
+                    list: "/otp-locking",
+                    meta: {
+                      label: "OTP Locking",
+                      icon: <LockOutlined />,
+                    },
+                  },
+                  {
+                    name: "cooling-period",
+                    list: "/cooling-period",
+                    meta: {
+                      label: "Cooling Period",
+                      icon: <FieldTimeOutlined />,
+                    },
+                  },
+                  {
+                    name: "device-delinking",
+                    list: "/device-delinking",
+                    meta: {
+                      label: "Device De-linking",
+                      icon: <DisconnectOutlined />,
+                    },
+                  },
+                  {
+                    name: "biller-subbiller",
+                    list: "/biller-subbiller",
+                    meta: {
+                      label: "Biller & Sub Biller ID",
+                      icon: <IdcardOutlined />,
+                    },
+                  },
+                  {
+                    name: "roles-rights",
+                    list: "/roles-rights",
+                    meta: {
+                      label: "Roles & Rights",
+                      icon: <TeamOutlined />,
+                    },
+                  },
+                  {
                     name: "bonus-list",
                     list: "/bonus/list",
                     meta: {
@@ -238,14 +260,6 @@ function App() {
                     },
                   },
                   {
-                    name: "limits",
-                    meta: {
-                      label: "Limits",
-                      icon: <ControlOutlined />,
-                    },
-                    list: "/limits",
-                  },
-                  {
                     name: "transaction-limits",
                     list: "/limits/transaction",
                     meta: {
@@ -259,13 +273,6 @@ function App() {
                     meta: {
                       label: "TP Redemption",
                       parent: "limits",
-                    },
-                  },
-                  {
-                    name: "recon",
-                    meta: {
-                      label: "Recon",
-                      icon: <ReconciliationOutlined />,
                     },
                   },
                   {
@@ -285,22 +292,6 @@ function App() {
                     },
                   },
                   {
-                    name: "raffle",
-                    list: "/raffle",
-                    meta: {
-                      label: "Raffle",
-                      icon: <TrophyOutlined />,
-                    },
-                  },
-                  {
-                    name: "rates",
-                    meta: {
-                      label: "Rates",
-                      icon: <PercentageOutlined />,
-                    },
-                    list: "/rates",
-                  },
-                  {
                     name: "global-rates",
                     list: "/rates/global",
                     meta: {
@@ -316,54 +307,6 @@ function App() {
                       parent: "rates",
                     },
                   },
-                  {
-                    name: "otp-locking",
-                    list: "/otp-locking",
-                    meta: {
-                      label: "OTP Locking",
-                      icon: <LockOutlined />,
-                    },
-                  },
-                  {
-                    name: "cooling-period",
-                    list: "/cooling-period",
-                    meta: {
-                      label: "Cooling Period",
-                      icon: <FieldTimeOutlined />,
-                    },
-                  },
-                  {
-                    name: "roles-rights",
-                    list: "/roles-rights",
-                    meta: {
-                      label: "Roles & Rights",
-                      icon: <TeamOutlined />,
-                    },
-                  },
-                  {
-                    name: "device-delinking",
-                    list: "/device-delinking",
-                    meta: {
-                      label: "Device De-linking",
-                      icon: <DisconnectOutlined />,
-                    },
-                  },
-                  {
-                    name: "biller-subbiller",
-                    list: "/biller-subbiller",
-                    meta: {
-                      label: "Biller Sub-Biller ID",
-                      icon: <IdcardOutlined />,
-                    },
-                  },
-                  {
-                    name: "reports",
-                    list: "/reports",
-                    meta: {
-                      label: "Reports",
-                      icon: <FileTextOutlined />,
-                    },
-                  },
                 ]}
                 options={{
                   syncWithLocation: true,
@@ -377,15 +320,14 @@ function App() {
                     element={
                       <ThemedLayoutV2
                         Header={Header}
-                       
                         Sider={(props) => (
                           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                           //@ts-ignore
                           <ThemedSiderV2 {...props} items={siderMenuItems} />
                         )}
-                        >
-                          <Outlet />
-                        </ThemedLayoutV2>
+                      >
+                        <Outlet />
+                      </ThemedLayoutV2>
                     }
                   >
                     <Route
@@ -459,10 +401,10 @@ function App() {
                       element={<div>Biller Sub-Biller ID</div>}
                     />
                     <Route path="/reports" element={<Reports />} />
-                    <Route path="/reports/reconciliation" element={<ReconciliationReport />} />
+                    <Route path="/reports/reconciliation-report" element={<ReconciliationReport />} />
                     <Route path="/reports/payment-transaction-report" element={<PaymentTransactionReport />} />
-                    <Route path="/reports/laas-user-registration" element={<LaasUserRegistrationReport />} />
-                    <Route path="/reports/payment-gitu" element={<PaymentGituReport />} />
+                    <Route path="/reports/laas-user-registration-report" element={<LaasUserRegistrationReport />} />
+                    <Route path="/reports/payment-gitu-report" element={<PaymentGituReport />} />
                     <Route path="*" element={<ErrorComponent />} />
                   </Route>
                 </Routes>

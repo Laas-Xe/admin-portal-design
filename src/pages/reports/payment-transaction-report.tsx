@@ -171,7 +171,7 @@ export const PaymentTransactionReport: React.FC = () => {
       customerCif: '########',
       customerName: 'Michael Smith',
       transactionProvider: 'FINSERV',
-      billerName: 'DEWA',
+      billerName: 'MBME',
       subBillerCifAmount: '750 TP',
       paymentMxCoreAmount: '0',
       lastFourDigits: '118000.15',

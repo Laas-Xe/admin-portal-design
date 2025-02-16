@@ -136,14 +136,14 @@ const EditModal: React.FC<EditModalProps> = ({
           label={
             <Tooltip title="Merchant/Biller">
               <span>
-                Provider{" "}
+                Merchant{" "}
                 <InfoCircleOutlined
                   style={{ color: "#1890ff", marginLeft: 4 }}
                 />
               </span>
             </Tooltip>
           }
-          name="provider"
+          name="merchant"
           rules={[{ required: true, message: "Please input provider!" }]}
         >
           <Input placeholder="Enter provider" />
@@ -426,17 +426,6 @@ export const GituConfig: React.FC = () => {
       glBranchCode: "052",
       onlineAcBranchCode: "102",
       glCostCenter: "173",
-      currency: "AED",
-      actions: "",
-    },
-    {
-      provider: "DEWA",
-      type: "BILL_PAYMENT",
-      glAccount: "241003173",
-      onlineAccount: "13834073920005",
-      glBranchCode: "053",
-      onlineAcBranchCode: "103",
-      glCostCenter: "174",
       currency: "AED",
       actions: "",
     },

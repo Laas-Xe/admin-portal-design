@@ -123,16 +123,16 @@ const EditModal: React.FC<EditModalProps> = ({
         <Form.Item
           label={
             <span>
-              Provider
+              Merchant
               <Tooltip title="Merchant/Biller">
                 <InfoCircleOutlined style={{ marginLeft: 8 }} />
               </Tooltip>
             </span>
           }
-          name="provider"
-          rules={[{ required: true, message: "Please input provider!" }]}
+          name="merchant"
+          rules={[{ required: true, message: "Please input Merchant!" }]}
         >
-          <Input placeholder="Enter provider" />
+          <Input placeholder="Enter Merchant" />
         </Form.Item>
 
         <Form.Item
@@ -642,16 +642,6 @@ export const ProCashUpdates: React.FC = () => {
     },
     {
       provider: "Smiles",
-      onlineAccount: "13834073920003",
-      beneficiaryAccountNumber: "AE380030010745968920001",
-      beneficiaryName: "MBME PAY PAYMENT SERVICES PRO.LLC",
-      beneficiaryBankName: "ABU DHABI COMMERCIAL BANK",
-      remittanceCode: "UTL",
-      paymentType: "IFT / EFD/ EFI",
-      actions: "",
-    },
-    {
-      provider: "DEWA",
       onlineAccount: "13834073920003",
       beneficiaryAccountNumber: "AE380030010745968920001",
       beneficiaryName: "MBME PAY PAYMENT SERVICES PRO.LLC",

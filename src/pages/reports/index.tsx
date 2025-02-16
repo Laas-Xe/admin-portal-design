@@ -28,11 +28,10 @@ const providers = [
   { label: 'MBME', value: 'mbme' },
   { label: 'FINSERV', value: 'finserv' },
   { label: 'NI', value: 'ni' },
-  { label: 'SMILE', value: 'smile' },
-  { label: 'DEWA', value: 'dewa' }
+  { label: 'SMILE', value: 'smile' }
 ];
 
-export const Reports: React.FC = () => {
+const Reports: React.FC = () => {
   const { token } = theme.useToken();
   const [form] = Form.useForm();
   const navigate = useNavigation();
@@ -45,16 +44,16 @@ export const Reports: React.FC = () => {
       // Navigate to the appropriate report based on type
       switch (reportType) {
         case 'reconcilation':
-          navigate.push('/reports/reconciliation');
+          navigate.push('/reports/reconciliation-report');
           break;
         case 'payment_gitu':
-          navigate.push('/reports/payment-gitu');
+          navigate.push('/reports/payment-gitu-report');
           break;
         case 'payment_transaction':
           navigate.push('/reports/payment-transaction-report');
           break;
         case 'laas_registration':
-          navigate.push('/reports/laas-user-registration');
+          navigate.push('/reports/laas-user-registration-report');
           break;
       }
     });
@@ -95,11 +94,11 @@ export const Reports: React.FC = () => {
               {({ getFieldValue }) => (
                 <Form.Item
                   name="provider"
-                  label="Provider"
+                  label="Merchant"
                   rules={[{ required: getFieldValue('reportType') !== 'laas_registration', message: 'Please select a provider' }]}
                 >
                   <Select
-                    placeholder="Select Provider"
+                    placeholder="Select Merchant"
                     options={providers}
                     style={{ width: '100%' }}
                     size="large"
@@ -129,7 +128,7 @@ export const Reports: React.FC = () => {
               />
             </Form.Item>
             <Alert
-              message="Last 3 months data available only"
+              message="Last 3 months data available only 200 records available for view, for complete record , please download the report"
               type="info"
               showIcon
               style={{ marginTop: '-16px', marginBottom: '24px' }}
