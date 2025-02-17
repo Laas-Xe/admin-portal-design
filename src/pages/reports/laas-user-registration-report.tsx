@@ -301,7 +301,7 @@ export const LaasUserRegistrationReport: React.FC = () => {
     <Card>
       <Space direction="vertical" size="middle" style={{ width: '100%' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Title level={2}>LaaS User Registration Report</Title>
+          <Title level={2}>App User Registration Report</Title>
           <Space>
             <Button
               type="primary"

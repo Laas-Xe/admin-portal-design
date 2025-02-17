@@ -330,7 +330,7 @@ export const PaymentTransactionReport: React.FC = () => {
     <Card>
       <Space direction="vertical" size="middle" style={{ width: '100%' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Title level={2}>Payment Transaction Report</Title>
+          <Title level={2}>App Payment Transaction Report</Title>
           <Space>
             <Button
               type="primary"
