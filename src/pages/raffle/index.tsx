@@ -8,9 +8,7 @@ import {
   Space,
   theme,
   List,
-  Modal
 } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router";
 
 const { Title, Text } = Typography;
@@ -42,8 +40,6 @@ interface RaffleProduct {
 export const Raffle: React.FC = () => {
   const { token } = theme.useToken();
   const navigate = useNavigate();
-  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
-  const [selectedRaffleId, setSelectedRaffleId] = useState<string | null>(null);
 
   // Mock data - replace with actual API call
   const raffleProducts: RaffleProduct[] = [
@@ -343,18 +339,6 @@ export const Raffle: React.FC = () => {
     navigate("/raffle/add");
   };
 
-  const handleDelete = (id: string) => {
-    setSelectedRaffleId(id);
-    setDeleteModalVisible(true);
-  };
-
-  const confirmDelete = () => {
-    // Implement actual delete logic here
-    console.log(`Deleting raffle with id: ${selectedRaffleId}`);
-    setDeleteModalVisible(false);
-    setSelectedRaffleId(null);
-  };
-
   return (
     <Card bordered={false}>
       <Row justify="space-between" align="middle" style={{ marginBottom: token.marginLG }}>
@@ -379,12 +363,6 @@ export const Raffle: React.FC = () => {
                 <Space direction="vertical" size="small" style={{ width: "100%" }}>
                   <Row justify="space-between" align="middle">
                     <Title level={4} style={{ margin: 0 }}>{product.name}</Title>
-                    <Button 
-                      type="text" 
-                      danger 
-                      icon={<DeleteOutlined />}
-                      onClick={() => handleDelete(product.id)}
-                    />
                   </Row>
 
                   <Row>
@@ -455,21 +433,6 @@ export const Raffle: React.FC = () => {
           </Card>
         ))}
       </Space>
-
-      <Modal
-        title="Confirm Delete"
-        open={deleteModalVisible}
-        onOk={confirmDelete}
-        onCancel={() => {
-          setDeleteModalVisible(false);
-          setSelectedRaffleId(null);
-        }}
-        okText="Delete"
-        cancelText="Cancel"
-        okButtonProps={{ danger: true }}
-      >
-        <p>Are you sure you want to delete this raffle? This action cannot be undone.</p>
-      </Modal>
     </Card>
   );
 };
