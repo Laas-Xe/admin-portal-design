@@ -41,6 +41,7 @@ import { ReconciliationReport } from "./pages/reports/reconciliation-report";
 import { PaymentTransactionReport } from "./pages/reports/payment-transaction-report";
 import { LaasUserRegistrationReport } from "./pages/reports/laas-user-registration-report";
 import { PaymentGituReport } from "./pages/reports/payment-gitu-report";
+import DeviceDeLinking from "./pages/device-delinking";
 
 import {
   DashboardOutlined,
@@ -97,7 +98,7 @@ const siderMenuItems = [
   {
     key: "/otp-locking",
     icon: <LockOutlined />,
-    label: "OTP Locking",
+    label: "Locking",
   },
   {
     key: "/cooling-period",
@@ -199,7 +200,7 @@ function App() {
                     name: "otp-locking",
                     list: "/otp-locking",
                     meta: {
-                      label: "OTP Locking",
+                      label: "Locking",
                       icon: <LockOutlined />,
                     },
                   },
@@ -394,7 +395,7 @@ function App() {
                     />
                     <Route
                       path="/device-delinking"
-                      element={<div>Device De-linking</div>}
+                      element={<DeviceDeLinking />}
                     />
                     <Route
                       path="/biller-subbiller"
