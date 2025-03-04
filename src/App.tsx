@@ -36,12 +36,16 @@ import { UpdateRaffle } from "./pages/raffle/update";
 import { BonusList } from "./pages/bonus-list";
 import { GituConfig } from "./pages/recon/gitu-config";
 import { ProCashUpdates } from "./pages/recon/procash";
+import { GlobalRates } from "./pages/recon/global-rates";
 import Reports from "./pages/reports";
 import { ReconciliationReport } from "./pages/reports/reconciliation-report";
 import { PaymentTransactionReport } from "./pages/reports/payment-transaction-report";
 import { LaasUserRegistrationReport } from "./pages/reports/laas-user-registration-report";
 import { PaymentGituReport } from "./pages/reports/payment-gitu-report";
 import DeviceDeLinking from "./pages/device-delinking";
+import { BillerSubBiller } from "./pages/biller-subbiller";
+import { BillerSubBillerProvider } from "./pages/biller-subbiller/provider";
+import { BillerSubBillerUpdate } from "./pages/biller-subbiller/update";
 
 import {
   DashboardOutlined,
@@ -89,11 +93,6 @@ const siderMenuItems = [
     key: "/reports",
     icon: <FileTextOutlined />,
     label: "Reports",
-  },
-  {
-    key: "/rates",
-    icon: <PercentageOutlined />,
-    label: "% Rates",
   },
   {
     key: "/otp-locking",
@@ -186,14 +185,6 @@ function App() {
                     meta: {
                       label: "Reports",
                       icon: <FileTextOutlined />,
-                    },
-                  },
-                  {
-                    name: "rates",
-                    list: "/rates",
-                    meta: {
-                      label: "% Rates",
-                      icon: <PercentageOutlined />,
                     },
                   },
                   {
@@ -294,18 +285,10 @@ function App() {
                   },
                   {
                     name: "global-rates",
-                    list: "/rates/global",
+                    list: "/recon/global-rates",
                     meta: {
                       label: "Global Rates",
-                      parent: "rates",
-                    },
-                  },
-                  {
-                    name: "partner-rates",
-                    list: "/rates/partner",
-                    meta: {
-                      label: "Partner Rates",
-                      parent: "rates",
+                      parent: "recon",
                     },
                   },
                 ]}
@@ -360,6 +343,7 @@ function App() {
                     <Route path="/recon" element={<div>Recon</div>} />
                     <Route path="/recon/gitu-config" element={<GituConfig />} />
                     <Route path="/recon/procash" element={<ProCashUpdates />} />
+                    <Route path="/recon/global-rates" element={<GlobalRates />} />
                     <Route
                       path="/raffle"
                       element={<Raffle />}
@@ -371,15 +355,6 @@ function App() {
                     <Route
                       path="/raffle/update/:id"
                       element={<UpdateRaffle />}
-                    />
-                    <Route path="/rates" element={<div>Rates</div>} />
-                    <Route
-                      path="/rates/global"
-                      element={<div>Global Rates</div>}
-                    />
-                    <Route
-                      path="/rates/partner"
-                      element={<div>Partner Rates</div>}
                     />
                     <Route
                       path="/otp-locking"
@@ -399,7 +374,15 @@ function App() {
                     />
                     <Route
                       path="/biller-subbiller"
-                      element={<div>Biller Sub-Biller ID</div>}
+                      element={<BillerSubBiller />}
+                    />
+                    <Route
+                      path="/biller-subbiller/provider"
+                      element={<BillerSubBillerProvider />}
+                    />
+                    <Route
+                      path="/biller-subbiller/update"
+                      element={<BillerSubBillerUpdate />}
                     />
                     <Route path="/reports" element={<Reports />} />
                     <Route path="/reports/reconciliation-report" element={<ReconciliationReport />} />
