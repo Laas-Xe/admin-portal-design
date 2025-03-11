@@ -45,6 +45,7 @@ import { PaymentGituReport } from "./pages/reports/payment-gitu-report";
 import DeviceDeLinking from "./pages/device-delinking";
 import { BillerSubBiller } from "./pages/biller-subbiller";
 import { BillerSubBillerProvider } from "./pages/biller-subbiller/provider";
+import { BillerSubBillerServiceType } from "./pages/biller-subbiller/service-type";
 import { BillerSubBillerUpdate } from "./pages/biller-subbiller/update";
 
 import {
@@ -379,6 +380,10 @@ function App() {
                     <Route
                       path="/biller-subbiller/provider"
                       element={<BillerSubBillerProvider />}
+                    />
+                    <Route
+                      path="/biller-subbiller/service-type"
+                      element={<BillerSubBillerServiceType />}
                     />
                     <Route
                       path="/biller-subbiller/update"

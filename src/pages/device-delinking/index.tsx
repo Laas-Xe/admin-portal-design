@@ -7,6 +7,7 @@ const { Title } = Typography;
 
 interface CustomerData {
   name: string;
+  username: string;
   deviceType: string;
   phoneNumber: string;
   email: string;
@@ -21,6 +22,7 @@ const DeviceDeLinking: React.FC = () => {
     // Mock data for demonstration
     const mockCustomer: CustomerData = {
       name: 'Mohammad Salman',
+      username: 'salman123',
       deviceType: 'iPhone 16 Pro',
       phoneNumber: '+91 992 829 1819',
       email: 'salman@gmail.com',

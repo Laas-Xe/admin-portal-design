@@ -11,7 +11,9 @@ import {
   Col,
   TimePicker,
   Alert,
+  Tooltip,
 } from 'antd';
+import { InfoCircleOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
 import type { Dayjs } from 'dayjs';
 
@@ -76,7 +78,7 @@ export const OtpLocking: React.FC = () => {
   return (
     <div style={{ padding: token.paddingLG }}>
       <Card>
-        <Title level={3}>Locking</Title>
+        <Title level={3}>OTP Locking</Title>
 
         <Form
           form={form}
@@ -99,7 +101,12 @@ export const OtpLocking: React.FC = () => {
                   name="totalAttempts"
                   rules={[{ required: true, message: 'Please input total attempts' }]}
                 >
-                  <InputNumber style={{ width: '100%' }} min={1} />
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <InputNumber style={{ width: '100%' }} min={1} />
+                    <Tooltip title="The maximum number of consecutive failed OTP attempts allowed during registration, login with new device, forgot username, or Smart PIN reset before the account is temporarily locked.">
+                      <InfoCircleOutlined style={{ marginLeft: 8, color: token.colorPrimary }} />
+                    </Tooltip>
+                  </div>
                 </Form.Item>
               </Col>
               <Col span={12}>
@@ -108,7 +115,12 @@ export const OtpLocking: React.FC = () => {
                   name="lockingPeriod"
                   rules={[{ required: true, message: 'Please select locking period' }]}
                 >
-                  <TimePicker style={{ width: '100%' }} format="HH:mm:ss" showNow={false} />
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <TimePicker style={{ width: '100%' }} format="HH:mm:ss" showNow={false} />
+                    <Tooltip title="The duration for which the account will remain locked after exceeding the maximum number of allowed attempts. During this period, the user cannot attempt to login or reset credentials.">
+                      <InfoCircleOutlined style={{ marginLeft: 8, color: token.colorPrimary }} />
+                    </Tooltip>
+                  </div>
                 </Form.Item>
               </Col>
             </Row>
@@ -119,7 +131,12 @@ export const OtpLocking: React.FC = () => {
                   name="attemptsResetPeriod"
                   rules={[{ required: true, message: 'Please select attempts reset period' }]}
                 >
-                  <TimePicker style={{ width: '100%' }} format="HH:mm:ss" showNow={false} />
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <TimePicker style={{ width: '100%' }} format="HH:mm:ss" showNow={false} />
+                    <Tooltip title="The time period after which the count of failed attempts will reset to zero. This helps users regain access after the specified period without requiring manual intervention.">
+                      <InfoCircleOutlined style={{ marginLeft: 8, color: token.colorPrimary }} />
+                    </Tooltip>
+                  </div>
                 </Form.Item>
               </Col>
             </Row>
@@ -145,7 +162,12 @@ export const OtpLocking: React.FC = () => {
                   name="cidTotalAttempts"
                   rules={[{ required: true, message: 'Please input total attempts' }]}
                 >
-                  <InputNumber style={{ width: '100%' }} min={1} />
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <InputNumber style={{ width: '100%' }} min={1} />
+                    <Tooltip title="The maximum number of consecutive failed CID verification attempts allowed before the CID functionality is temporarily locked.">
+                      <InfoCircleOutlined style={{ marginLeft: 8, color: token.colorPrimary }} />
+                    </Tooltip>
+                  </div>
                 </Form.Item>
               </Col>
               <Col span={12}>
@@ -154,7 +176,12 @@ export const OtpLocking: React.FC = () => {
                   name="cidLockingPeriod"
                   rules={[{ required: true, message: 'Please select locking period' }]}
                 >
-                  <TimePicker style={{ width: '100%' }} format="HH:mm:ss" showNow={false} />
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <TimePicker style={{ width: '100%' }} format="HH:mm:ss" showNow={false} />
+                    <Tooltip title="The duration for which the CID functionality will remain locked after exceeding the maximum number of allowed attempts. During this period, the user cannot attempt to use CID verification.">
+                      <InfoCircleOutlined style={{ marginLeft: 8, color: token.colorPrimary }} />
+                    </Tooltip>
+                  </div>
                 </Form.Item>
               </Col>
             </Row>
@@ -165,7 +192,12 @@ export const OtpLocking: React.FC = () => {
                   name="cidAttemptsResetPeriod"
                   rules={[{ required: true, message: 'Please select attempts reset period' }]}
                 >
-                  <TimePicker style={{ width: '100%' }} format="HH:mm:ss" showNow={false} />
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <TimePicker style={{ width: '100%' }} format="HH:mm:ss" showNow={false} />
+                    <Tooltip title="The time period after which the count of failed CID attempts will reset to zero. This helps users regain access to CID functionality after the specified period without requiring manual intervention.">
+                      <InfoCircleOutlined style={{ marginLeft: 8, color: token.colorPrimary }} />
+                    </Tooltip>
+                  </div>
                 </Form.Item>
               </Col>
             </Row>
@@ -191,7 +223,12 @@ export const OtpLocking: React.FC = () => {
                   name="otpAttempts"
                   rules={[{ required: true, message: 'Please input OTP attempts' }]}
                 >
-                  <InputNumber style={{ width: '100%' }} min={1} />
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <InputNumber style={{ width: '100%' }} min={1} />
+                    <Tooltip title="The maximum number of consecutive failed OTP attempts allowed for card linking, biller payments, and touchpoints modules before the functionality is temporarily locked.">
+                      <InfoCircleOutlined style={{ marginLeft: 8, color: token.colorPrimary }} />
+                    </Tooltip>
+                  </div>
                 </Form.Item>
               </Col>
               <Col span={12}>
@@ -200,7 +237,12 @@ export const OtpLocking: React.FC = () => {
                   name="paymentLockingPeriod"
                   rules={[{ required: true, message: 'Please select locking period' }]}
                 >
-                  <TimePicker style={{ width: '100%' }} format="HH:mm:ss" showNow={false} />
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <TimePicker style={{ width: '100%' }} format="HH:mm:ss" showNow={false} />
+                    <Tooltip title="The duration for which payment functionality will remain locked after exceeding the maximum number of allowed OTP attempts. During this period, the user cannot attempt to make payments.">
+                      <InfoCircleOutlined style={{ marginLeft: 8, color: token.colorPrimary }} />
+                    </Tooltip>
+                  </div>
                 </Form.Item>
               </Col>
             </Row>
@@ -211,7 +253,12 @@ export const OtpLocking: React.FC = () => {
                   name="resendAttempts"
                   rules={[{ required: true, message: 'Please input resend attempts' }]}
                 >
-                  <InputNumber style={{ width: '100%' }} min={1} />
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <InputNumber style={{ width: '100%' }} min={1} />
+                    <Tooltip title="The maximum number of times a user can request to resend an OTP within a single session before being temporarily restricted from requesting additional OTPs.">
+                      <InfoCircleOutlined style={{ marginLeft: 8, color: token.colorPrimary }} />
+                    </Tooltip>
+                  </div>
                 </Form.Item>
               </Col>
               <Col span={12}>
@@ -220,7 +267,12 @@ export const OtpLocking: React.FC = () => {
                   name="resendTimer"
                   rules={[{ required: true, message: 'Please select resend timer' }]}
                 >
-                  <TimePicker style={{ width: '100%' }} format="HH:mm:ss" showNow={false} />
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <TimePicker style={{ width: '100%' }} format="HH:mm:ss" showNow={false} />
+                    <Tooltip title="The minimum waiting period required between consecutive OTP resend requests. This helps prevent abuse of the OTP system and reduces the load on the authentication servers.">
+                      <InfoCircleOutlined style={{ marginLeft: 8, color: token.colorPrimary }} />
+                    </Tooltip>
+                  </div>
                 </Form.Item>
               </Col>
             </Row>
@@ -231,7 +283,12 @@ export const OtpLocking: React.FC = () => {
                   name="paymentAttemptsResetPeriod"
                   rules={[{ required: true, message: 'Please select attempts reset period' }]}
                 >
-                  <TimePicker style={{ width: '100%' }} format="HH:mm:ss" showNow={false} />
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <TimePicker style={{ width: '100%' }} format="HH:mm:ss" showNow={false} />
+                    <Tooltip title="The time period after which the count of failed payment-related OTP attempts will reset to zero. This helps users regain access to payment functionality after the specified period without requiring manual intervention.">
+                      <InfoCircleOutlined style={{ marginLeft: 8, color: token.colorPrimary }} />
+                    </Tooltip>
+                  </div>
                 </Form.Item>
               </Col>
             </Row>

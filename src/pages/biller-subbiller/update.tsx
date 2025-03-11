@@ -27,6 +27,9 @@ const steps = [
     title: 'Provider',
   },
   {
+    title: 'Service Type',
+  },
+  {
     title: 'Update',
   },
 ];
@@ -37,14 +40,16 @@ export const BillerSubBillerUpdate: React.FC = () => {
   const location = useLocation();
   const [form] = Form.useForm();
   
-  // Get the selected category and provider from location state
+  // Get the selected category, provider, and service type from location state
   const selectedCategory = location.state?.category || 'Telecom';
   const selectedProvider = location.state?.provider || 'Du';
+  const selectedServiceType = location.state?.serviceType || 'Prepaid';
 
   const handleFinish = (values: any) => {
     console.log('Form values:', values);
     console.log('Selected category:', selectedCategory);
     console.log('Selected provider:', selectedProvider);
+    console.log('Selected service type:', selectedServiceType);
     // In a real app, submit the data to an API
     
     // Navigate back to the main page or show success message
@@ -52,9 +57,12 @@ export const BillerSubBillerUpdate: React.FC = () => {
   };
 
   const handleCancel = () => {
-    // Go back to the provider page
-    navigate('/biller-subbiller/provider', { 
-      state: { category: selectedCategory } 
+    // Go back to the service type page
+    navigate('/biller-subbiller/service-type', { 
+      state: { 
+        category: selectedCategory,
+        provider: selectedProvider 
+      } 
     });
   };
 
@@ -67,7 +75,7 @@ export const BillerSubBillerUpdate: React.FC = () => {
         <div style={{ margin: `${token.marginLG}px 0` }}>
           <Steps
             size="small"
-            current={2}
+            current={3}
             items={steps}
           />
         </div>
@@ -82,9 +90,11 @@ export const BillerSubBillerUpdate: React.FC = () => {
             initialValues={{
               category: selectedCategory,
               provider: selectedProvider,
+              serviceType: selectedServiceType,
               billerCode: '',
               subBillerCode: '',
-              status: 'active'
+              merchantId: '',
+              terminalId: ''
             }}
           >
             <Row gutter={16}>
@@ -109,18 +119,17 @@ export const BillerSubBillerUpdate: React.FC = () => {
             <Row gutter={16}>
               <Col span={12}>
                 <Form.Item
-                  name="billerCode"
-                  label="Biller Code"
-                  rules={[{ required: true, message: 'Please enter biller code' }]}
+                  name="serviceType"
+                  label="Service Type"
                 >
-                  <Input />
+                  <Input disabled />
                 </Form.Item>
               </Col>
               <Col span={12}>
                 <Form.Item
-                  name="subBillerCode"
-                  label="Sub-Biller Code"
-                  rules={[{ required: true, message: 'Please enter sub-biller code' }]}
+                  name="billerCode"
+                  label="Biller Code"
+                  rules={[{ required: true, message: 'Please enter biller code' }]}
                 >
                   <Input />
                 </Form.Item>
@@ -130,14 +139,32 @@ export const BillerSubBillerUpdate: React.FC = () => {
             <Row gutter={16}>
               <Col span={12}>
                 <Form.Item
-                  name="status"
-                  label="Status"
-                  rules={[{ required: true, message: 'Please select status' }]}
+                  name="subBillerCode"
+                  label="Sub-Biller Code"
+                  rules={[{ required: true, message: 'Please enter sub-biller code' }]}
                 >
-                  <Select>
-                    <Option value="active">Active</Option>
-                    <Option value="inactive">Inactive</Option>
-                  </Select>
+                  <Input />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  name="merchantId"
+                  label="Merchant ID"
+                  rules={[{ required: true, message: 'Please enter merchant ID' }]}
+                >
+                  <Input />
+                </Form.Item>
+              </Col>
+            </Row>
+            
+            <Row gutter={16}>
+              <Col span={12}>
+                <Form.Item
+                  name="terminalId"
+                  label="Terminal ID"
+                  rules={[{ required: true, message: 'Please enter terminal ID' }]}
+                >
+                  <Input />
                 </Form.Item>
               </Col>
             </Row>

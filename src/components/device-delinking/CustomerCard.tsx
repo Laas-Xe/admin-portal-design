@@ -1,11 +1,12 @@
-import React from 'react';
-import { Button, Tag, Card, Typography, Row, Col } from 'antd';
+import React, { useState } from 'react';
+import { Button, Tag, Card, Typography, Row, Col, Modal } from 'antd';
 
 const { Title, Text } = Typography;
 
 interface CustomerCardProps {
   customer: {
     name: string;
+    username: string;
     deviceType: string;
     phoneNumber: string;
     email: string;
@@ -15,6 +16,21 @@ interface CustomerCardProps {
 }
 
 const CustomerCard: React.FC<CustomerCardProps> = ({ customer, onUnlink }) => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleConfirm = () => {
+    setIsModalVisible(false);
+    onUnlink();
+  };
+
   return (
     <div className="mt-4 max-w-4xl">
       <Card 
@@ -25,19 +41,25 @@ const CustomerCard: React.FC<CustomerCardProps> = ({ customer, onUnlink }) => {
           <Tag color="blue" className="py-1 px-3">{customer.status}</Tag>
         </div>
         <Row gutter={48} className="mb-12">
-          <Col span={8}>
+          <Col span={6}>
             <Text type="secondary">Device</Text>
             <div className="mt-2">
               <Text>{customer.deviceType}</Text>
             </div>
           </Col>
-          <Col span={8}>
+          <Col span={6}>
+            <Text type="secondary">Username</Text>
+            <div className="mt-2">
+              <Text>{customer.username}</Text>
+            </div>
+          </Col>
+          <Col span={6}>
             <Text type="secondary">Phone Number</Text>
             <div className="mt-2">
               <Text>{customer.phoneNumber}</Text>
             </div>
           </Col>
-          <Col span={8}>
+          <Col span={6}>
             <Text type="secondary">Email</Text>
             <div className="mt-2">
               <Text>{customer.email}</Text>
@@ -49,7 +71,7 @@ const CustomerCard: React.FC<CustomerCardProps> = ({ customer, onUnlink }) => {
             type="primary" 
             danger
             block
-            onClick={onUnlink}
+            onClick={showModal}
             style={{ backgroundColor: '#ff4d4f', borderColor: '#ff4d4f' }}
             size="large"
           >
@@ -57,6 +79,49 @@ const CustomerCard: React.FC<CustomerCardProps> = ({ customer, onUnlink }) => {
           </Button>
         </div>
       </Card>
+
+      <Modal
+        title="Confirm Device Unlinking"
+        open={isModalVisible}
+        onCancel={handleCancel}
+        footer={[
+          <Button key="cancel" onClick={handleCancel}>
+            Cancel
+          </Button>,
+          <Button 
+            key="unlink" 
+            type="primary" 
+            danger 
+            onClick={handleConfirm}
+            style={{ backgroundColor: '#ff4d4f', borderColor: '#ff4d4f' }}
+          >
+            Unlink Device
+          </Button>,
+        ]}
+      >
+        <p>Are you sure you want to unlink the device for {customer.name}?</p>
+        <p>This action cannot be undone.</p>
+        <div className="mt-4 bg-gray-100 p-4 rounded">
+          <Row gutter={[16, 16]}>
+            <Col span={12}>
+              <Text type="secondary">Username:</Text>
+              <div><Text strong>{customer.username}</Text></div>
+            </Col>
+            <Col span={12}>
+              <Text type="secondary">Device:</Text>
+              <div><Text strong>{customer.deviceType}</Text></div>
+            </Col>
+            <Col span={12}>
+              <Text type="secondary">Phone Number:</Text>
+              <div><Text strong>{customer.phoneNumber}</Text></div>
+            </Col>
+            <Col span={12}>
+              <Text type="secondary">Email:</Text>
+              <div><Text strong>{customer.email}</Text></div>
+            </Col>
+          </Row>
+        </div>
+      </Modal>
     </div>
   );
 };

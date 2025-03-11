@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Card,
   Typography,
@@ -30,47 +30,52 @@ const steps = [
   },
 ];
 
-// Define providers for Telecom category
-// In a real app, this would come from an API based on the selected category
-const providers = [
-  'Du',
-  'Etisalat'
+// Define service types
+// In a real app, this would come from an API based on the selected provider
+const serviceTypes = [
+  'Prepaid',
+  'Postpaid',
+  'Internet'
 ];
 
-export const BillerSubBillerProvider: React.FC = () => {
+export const BillerSubBillerServiceType: React.FC = () => {
   const { token } = useToken();
   const navigate = useNavigate();
   const location = useLocation();
-  const [selectedProvider, setSelectedProvider] = useState<string | null>(null);
+  const [selectedServiceType, setSelectedServiceType] = useState<string | null>(null);
   
-  // Get the selected category from location state or use a default
+  // Get the selected category and provider from location state or use defaults
   const selectedCategory = location.state?.category || 'Telecom';
+  const selectedProvider = location.state?.provider || 'Du';
 
-  const handleProviderSelect = (provider: string) => {
-    setSelectedProvider(provider);
+  const handleServiceTypeSelect = (serviceType: string) => {
+    setSelectedServiceType(serviceType);
   };
 
   const handleNext = () => {
-    if (selectedProvider) {
-      console.log('Selected provider:', selectedProvider);
-      // Navigate to the next step (Service Type)
-      navigate('/biller-subbiller/service-type', { 
+    if (selectedServiceType) {
+      console.log('Selected service type:', selectedServiceType);
+      // Navigate to the next step (Update)
+      navigate('/biller-subbiller/update', { 
         state: { 
           category: selectedCategory,
-          provider: selectedProvider 
+          provider: selectedProvider,
+          serviceType: selectedServiceType
         } 
       });
     }
   };
 
   const handleCancel = () => {
-    // Go back to the categories page
-    navigate('/biller-subbiller');
+    // Go back to the provider page
+    navigate('/biller-subbiller/provider', { 
+      state: { category: selectedCategory } 
+    });
   };
 
   // Get card styles based on selection state and theme
-  const getCardStyle = (provider: string) => {
-    const isSelected = selectedProvider === provider;
+  const getCardStyle = (serviceType: string) => {
+    const isSelected = selectedServiceType === serviceType;
     
     return {
       backgroundColor: isSelected ? token.colorPrimaryBg : token.colorBgContainer,
@@ -82,8 +87,8 @@ export const BillerSubBillerProvider: React.FC = () => {
   };
 
   // Get text style based on selection state and theme
-  const getTextStyle = (provider: string) => {
-    const isSelected = selectedProvider === provider;
+  const getTextStyle = (serviceType: string) => {
+    const isSelected = selectedServiceType === serviceType;
     
     return {
       fontSize: token.fontSizeLG,
@@ -100,20 +105,20 @@ export const BillerSubBillerProvider: React.FC = () => {
         <div style={{ margin: `${token.marginLG}px 0` }}>
           <Steps
             size="small"
-            current={1}
+            current={2}
             items={steps}
           />
         </div>
         
         <div style={{ marginTop: token.marginLG }}>
-          <Title level={5}>Providers</Title>
+          <Title level={5}>Service Types</Title>
           
           <Row gutter={[16, 16]} style={{ marginTop: token.marginMD }}>
-            {providers.map((provider) => (
-              <Col xs={24} sm={12} key={provider}>
+            {serviceTypes.map((serviceType) => (
+              <Col xs={24} sm={12} key={serviceType}>
                 <Card
                   hoverable
-                  style={getCardStyle(provider)}
+                  style={getCardStyle(serviceType)}
                   bodyStyle={{
                     padding: token.paddingMD,
                     display: 'flex',
@@ -122,13 +127,13 @@ export const BillerSubBillerProvider: React.FC = () => {
                     height: '100%',
                     minHeight: '80px'
                   }}
-                  onClick={() => handleProviderSelect(provider)}
+                  onClick={() => handleServiceTypeSelect(serviceType)}
                 >
                   <Typography.Text
                     strong
-                    style={getTextStyle(provider)}
+                    style={getTextStyle(serviceType)}
                   >
-                    {provider}
+                    {serviceType}
                   </Typography.Text>
                 </Card>
               </Col>
@@ -141,7 +146,7 @@ export const BillerSubBillerProvider: React.FC = () => {
               <Button 
                 type="primary"
                 onClick={handleNext}
-                disabled={!selectedProvider}
+                disabled={!selectedServiceType}
               >
                 NEXT
               </Button>
@@ -153,4 +158,4 @@ export const BillerSubBillerProvider: React.FC = () => {
   );
 };
 
-export default BillerSubBillerProvider;
+export default BillerSubBillerServiceType;
