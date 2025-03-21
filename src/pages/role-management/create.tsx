@@ -6,10 +6,11 @@ import {
   Input, 
   Button, 
   Space, 
-  Checkbox, 
+  Switch, 
   Divider, 
   Row, 
-  Col 
+  Col,
+  Tooltip
 } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router";
@@ -45,7 +46,20 @@ export const CreateRole: React.FC = () => {
 
   const handlePermissionChange = (index: number, type: 'maker' | 'checker', checked: boolean) => {
     const updatedModules = [...modules];
+    
+    // Update the selected toggle
     updatedModules[index][type] = checked;
+    
+    // If turning on maker, turn off checker
+    if (type === 'maker' && checked) {
+      updatedModules[index].checker = false;
+    }
+    
+    // If turning on checker, turn off maker
+    if (type === 'checker' && checked) {
+      updatedModules[index].maker = false;
+    }
+    
     setModules(updatedModules);
   };
 
@@ -96,6 +110,12 @@ export const CreateRole: React.FC = () => {
           </Form.Item>
 
           <Divider style={{ margin: "24px 0" }} />
+          
+          <div style={{ marginBottom: "16px" }}>
+            <Typography.Text type="secondary">
+              Note: Maker and Checker roles are mutually exclusive. Enabling one will automatically disable the other.
+            </Typography.Text>
+          </div>
 
           {modules.map((module, index) => (
             <Row key={module.name} style={{ marginBottom: "16px" }}>
@@ -103,20 +123,28 @@ export const CreateRole: React.FC = () => {
                 <Typography.Text strong>{module.name}</Typography.Text>
               </Col>
               <Col span={8}>
-                <Checkbox
-                  checked={module.maker}
-                  onChange={(e) => handlePermissionChange(index, 'maker', e.target.checked)}
-                >
-                  Maker
-                </Checkbox>
+                <Tooltip title="Maker role can create and edit">
+                  <Space>
+                    <Switch
+                      checked={module.maker}
+                      onChange={(checked) => handlePermissionChange(index, 'maker', checked)}
+                      size="small"
+                    />
+                    <Typography.Text>Maker</Typography.Text>
+                  </Space>
+                </Tooltip>
               </Col>
               <Col span={8}>
-                <Checkbox
-                  checked={module.checker}
-                  onChange={(e) => handlePermissionChange(index, 'checker', e.target.checked)}
-                >
-                  Checker
-                </Checkbox>
+                <Tooltip title="Checker role can approve or reject">
+                  <Space>
+                    <Switch
+                      checked={module.checker}
+                      onChange={(checked) => handlePermissionChange(index, 'checker', checked)}
+                      size="small"
+                    />
+                    <Typography.Text>Checker</Typography.Text>
+                  </Space>
+                </Tooltip>
               </Col>
             </Row>
           ))}
