@@ -47,6 +47,10 @@ import { BillerSubBiller } from "./pages/biller-subbiller";
 import { BillerSubBillerProvider } from "./pages/biller-subbiller/provider";
 import { BillerSubBillerServiceType } from "./pages/biller-subbiller/service-type";
 import { BillerSubBillerUpdate } from "./pages/biller-subbiller/update";
+import { RoleManagement } from "./pages/role-management";
+import { CreateRole } from "./pages/role-management/create";
+import { UserManagement } from "./pages/user-management";
+import { AddUser } from "./pages/user-management/add";
 
 import {
   DashboardOutlined,
@@ -62,6 +66,8 @@ import {
   IdcardOutlined,
   FileTextOutlined,
   LogoutOutlined,
+  UserOutlined,
+  SafetyOutlined,
 } from "@ant-design/icons";
 
 const siderMenuItems = [
@@ -116,9 +122,14 @@ const siderMenuItems = [
     label: "Biller & Sub Biller ID",
   },
   {
-    key: "/roles-rights",
-    icon: <TeamOutlined />,
-    label: "Roles & Rights",
+    key: "/role-management",
+    icon: <SafetyOutlined />,
+    label: "Role Management",
+  },
+  {
+    key: "/user-management",
+    icon: <UserOutlined />,
+    label: "User Management",
   },
   {
     key: "/logout",
@@ -221,11 +232,19 @@ function App() {
                     },
                   },
                   {
-                    name: "roles-rights",
-                    list: "/roles-rights",
+                    name: "role-management",
+                    list: "/role-management",
                     meta: {
-                      label: "Roles & Rights",
-                      icon: <TeamOutlined />,
+                      label: "Role Management",
+                      icon: <SafetyOutlined />,
+                    },
+                  },
+                  {
+                    name: "user-management",
+                    list: "/user-management",
+                    meta: {
+                      label: "User Management",
+                      icon: <UserOutlined />,
                     },
                   },
                   {
@@ -366,8 +385,20 @@ function App() {
                       element={<CoolingPeriod />}
                     />
                     <Route
-                      path="/roles-rights"
-                      element={<div>Roles & Rights</div>}
+                      path="/role-management"
+                      element={<RoleManagement />}
+                    />
+                    <Route
+                      path="/role-management/create"
+                      element={<CreateRole />}
+                    />
+                    <Route
+                      path="/user-management"
+                      element={<UserManagement />}
+                    />
+                    <Route
+                      path="/user-management/add"
+                      element={<AddUser />}
                     />
                     <Route
                       path="/device-delinking"
