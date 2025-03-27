@@ -10,6 +10,7 @@ interface CustomerCardProps {
     deviceType: string;
     phoneNumber: string;
     email: string;
+    cid: string;
     status: 'Active' | 'Inactive';
   };
   onUnlink: () => void;
@@ -40,26 +41,32 @@ const CustomerCard: React.FC<CustomerCardProps> = ({ customer, onUnlink }) => {
           <Title level={3} style={{ margin: 0 }}>{customer.name}</Title>
           <Tag color="blue" className="py-1 px-3">{customer.status}</Tag>
         </div>
-        <Row gutter={48} className="mb-12">
-          <Col span={6}>
+        <Row gutter={24} className="mb-12">
+          <Col span={4}>
+            <Text type="secondary">CID</Text>
+            <div className="mt-2">
+              <Text>{customer.cid}</Text>
+            </div>
+          </Col>
+          <Col span={5}>
             <Text type="secondary">Device</Text>
             <div className="mt-2">
               <Text>{customer.deviceType}</Text>
             </div>
           </Col>
-          <Col span={6}>
+          <Col span={5}>
             <Text type="secondary">Username</Text>
             <div className="mt-2">
               <Text>{customer.username}</Text>
             </div>
           </Col>
-          <Col span={6}>
+          <Col span={5}>
             <Text type="secondary">Phone Number</Text>
             <div className="mt-2">
               <Text>{customer.phoneNumber}</Text>
             </div>
           </Col>
-          <Col span={6}>
+          <Col span={5}>
             <Text type="secondary">Email</Text>
             <div className="mt-2">
               <Text>{customer.email}</Text>
@@ -103,6 +110,10 @@ const CustomerCard: React.FC<CustomerCardProps> = ({ customer, onUnlink }) => {
         <p>This action cannot be undone.</p>
         <div className="mt-4 bg-gray-100 p-4 rounded">
           <Row gutter={[16, 16]}>
+            <Col span={12}>
+              <Text type="secondary">CID:</Text>
+              <div><Text strong>{customer.cid}</Text></div>
+            </Col>
             <Col span={12}>
               <Text type="secondary">Username:</Text>
               <div><Text strong>{customer.username}</Text></div>

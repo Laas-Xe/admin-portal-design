@@ -11,14 +11,19 @@ interface CustomerData {
   deviceType: string;
   phoneNumber: string;
   email: string;
+  cid: string;
   status: 'Active' | 'Inactive';
 }
 
 const DeviceDeLinking: React.FC = () => {
   const [customerData, setCustomerData] = useState<CustomerData | null>(null);
+  const [searchInfo, setSearchInfo] = useState<{type: string, value: string} | null>(null);
 
-  const handleSearch = async (searchTerm: string) => {
-    // TODO: Replace with actual API call
+  const handleSearch = async (searchType: string, searchTerm: string) => {
+    // Store search info for display purposes
+    setSearchInfo({ type: searchType, value: searchTerm });
+    
+    // TODO: Replace with actual API call based on search type
     // Mock data for demonstration
     const mockCustomer: CustomerData = {
       name: 'Mohammad Salman',
@@ -26,6 +31,7 @@ const DeviceDeLinking: React.FC = () => {
       deviceType: 'iPhone 16 Pro',
       phoneNumber: '+91 992 829 1819',
       email: 'salman@gmail.com',
+      cid: '8745219863',
       status: 'Active',
     };
     setCustomerData(mockCustomer);
@@ -33,6 +39,7 @@ const DeviceDeLinking: React.FC = () => {
 
   const handleReset = () => {
     setCustomerData(null);
+    setSearchInfo(null);
   };
 
   const handleUnlink = async () => {

@@ -9,6 +9,7 @@ import {
   Space,
   Collapse,
   InputNumber,
+  Switch,
 } from "antd";
 import { useNavigate } from "react-router";
 
@@ -18,6 +19,11 @@ const { Panel } = Collapse;
 const TransactionLimits: React.FC = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
+  const [enabledSections, setEnabledSections] = React.useState({
+    daily: true,
+    monthly: true,
+    yearly: true,
+  });
 
   const handleCancel = () => {
     navigate(-1);
@@ -32,9 +38,21 @@ const TransactionLimits: React.FC = () => {
 
   const handleSubmit = () => {
     form.validateFields().then((values) => {
-      console.log('Submitting:', values);
+      // Add enabled sections to the form values
+      const dataToSubmit = {
+        ...values,
+        enabledSections,
+      };
+      console.log('Submitting:', dataToSubmit);
       // Add API call here
     });
+  };
+
+  const toggleSection = (section: 'daily' | 'monthly' | 'yearly', checked: boolean) => {
+    setEnabledSections(prev => ({
+      ...prev,
+      [section]: checked
+    }));
   };
 
   return (
@@ -47,18 +65,33 @@ const TransactionLimits: React.FC = () => {
       >
         <Collapse defaultActiveKey={['daily']}>
           {/* Daily Section */}
-          <Panel header="Daily" key="daily">
+          <Panel 
+            header={
+              <div className="flex justify-between items-center w-full pr-2" style={{ gap: '20px' }}>
+                <span style={{ fontSize: '16px', fontWeight: 500 }}>Daily</span>
+                <div onClick={(e: React.MouseEvent) => e.stopPropagation()}>
+                  <Switch 
+                    checked={enabledSections.daily} 
+                    onChange={(checked) => toggleSection('daily', checked)}
+                  />
+                </div>
+              </div>
+            } 
+            key="daily"
+            collapsible={enabledSections.daily ? undefined : 'disabled'}
+          >
             <Row gutter={24}>
               <Col span={12}>
                 <Form.Item 
                   label="No of Attempts"
                   name="dailyAttempts"
-                  rules={[{ required: true, message: 'Please enter number of attempts' }]}
+                  rules={[{ required: enabledSections.daily, message: 'Please enter number of attempts' }]}
                 >
                   <InputNumber
                     style={{ width: '100%' }}
                     placeholder="Enter number of attempts"
                     min={0}
+                    disabled={!enabledSections.daily}
                   />
                 </Form.Item>
               </Col>
@@ -67,7 +100,7 @@ const TransactionLimits: React.FC = () => {
                   label="Amount"
                   name="dailyAmount"
                   rules={[
-                    { required: true, message: 'Please enter amount' },
+                    { required: enabledSections.daily, message: 'Please enter amount' },
                     { type: 'number', min: 0, message: 'Amount must be greater than or equal to 0' }
                   ]}
                 >
@@ -76,61 +109,43 @@ const TransactionLimits: React.FC = () => {
                     placeholder="Enter amount"
                     formatter={value => `AED ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                     parser={value => value!.replace(/AED\s?|(,*)/g, '')}
+                    disabled={!enabledSections.daily}
                   />
                 </Form.Item>
               </Col>
             </Row>
           </Panel>
 
-          {/* Weekly Section */}
-          <Panel header="Weekly" key="weekly">
-            <Row gutter={24}>
-              <Col span={12}>
-                <Form.Item 
-                  label="No of Attempts"
-                  name="weeklyAttempts"
-                  rules={[{ required: true, message: 'Please enter number of attempts' }]}
-                >
-                  <InputNumber
-                    style={{ width: '100%' }}
-                    placeholder="Enter number of attempts"
-                    min={0}
-                  />
-                </Form.Item>
-              </Col>
-              <Col span={12}>
-                <Form.Item 
-                  label="Amount"
-                  name="weeklyAmount"
-                  rules={[
-                    { required: true, message: 'Please enter amount' },
-                    { type: 'number', min: 0, message: 'Amount must be greater than or equal to 0' }
-                  ]}
-                >
-                  <InputNumber 
-                    style={{ width: '100%' }}
-                    placeholder="Enter amount"
-                    formatter={value => `AED ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                    parser={value => value!.replace(/AED\s?|(,*)/g, '')}
-                  />
-                </Form.Item>
-              </Col>
-            </Row>
-          </Panel>
+          {/* Weekly section removed */}
 
           {/* Monthly Section */}
-          <Panel header="Monthly" key="monthly">
+          <Panel 
+            header={
+              <div className="flex justify-between items-center w-full pr-2" style={{ gap: '20px' }}>
+                <span style={{ fontSize: '16px', fontWeight: 500 }}>Monthly</span>
+                <div onClick={(e: React.MouseEvent) => e.stopPropagation()}>
+                  <Switch 
+                    checked={enabledSections.monthly} 
+                    onChange={(checked) => toggleSection('monthly', checked)}
+                  />
+                </div>
+              </div>
+            } 
+            key="monthly"
+            collapsible={enabledSections.monthly ? undefined : 'disabled'}
+          >
             <Row gutter={24}>
               <Col span={12}>
                 <Form.Item 
                   label="No of Attempts"
                   name="monthlyAttempts"
-                  rules={[{ required: true, message: 'Please enter number of attempts' }]}
+                  rules={[{ required: enabledSections.monthly, message: 'Please enter number of attempts' }]}
                 >
                   <InputNumber
                     style={{ width: '100%' }}
                     placeholder="Enter number of attempts"
                     min={0}
+                    disabled={!enabledSections.monthly}
                   />
                 </Form.Item>
               </Col>
@@ -139,7 +154,7 @@ const TransactionLimits: React.FC = () => {
                   label="Amount"
                   name="monthlyAmount"
                   rules={[
-                    { required: true, message: 'Please enter amount' },
+                    { required: enabledSections.monthly, message: 'Please enter amount' },
                     { type: 'number', min: 0, message: 'Amount must be greater than or equal to 0' }
                   ]}
                 >
@@ -148,6 +163,7 @@ const TransactionLimits: React.FC = () => {
                     placeholder="Enter amount"
                     formatter={value => `AED ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                     parser={value => value!.replace(/AED\s?|(,*)/g, '')}
+                    disabled={!enabledSections.monthly}
                   />
                 </Form.Item>
               </Col>
@@ -155,18 +171,33 @@ const TransactionLimits: React.FC = () => {
           </Panel>
 
           {/* Yearly Section */}
-          <Panel header="Yearly" key="yearly">
+          <Panel 
+            header={
+              <div className="flex justify-between items-center w-full pr-2" style={{ gap: '20px' }}>
+                <span style={{ fontSize: '16px', fontWeight: 500 }}>Yearly</span>
+                <div onClick={(e: React.MouseEvent) => e.stopPropagation()}>
+                  <Switch 
+                    checked={enabledSections.yearly} 
+                    onChange={(checked) => toggleSection('yearly', checked)}
+                  />
+                </div>
+              </div>
+            } 
+            key="yearly"
+            collapsible={enabledSections.yearly ? undefined : 'disabled'}
+          >
             <Row gutter={24}>
               <Col span={12}>
                 <Form.Item 
                   label="No of Attempts"
                   name="yearlyAttempts"
-                  rules={[{ required: true, message: 'Please enter number of attempts' }]}
+                  rules={[{ required: enabledSections.yearly, message: 'Please enter number of attempts' }]}
                 >
                   <InputNumber
                     style={{ width: '100%' }}
                     placeholder="Enter number of attempts"
                     min={0}
+                    disabled={!enabledSections.yearly}
                   />
                 </Form.Item>
               </Col>
@@ -175,7 +206,7 @@ const TransactionLimits: React.FC = () => {
                   label="Amount"
                   name="yearlyAmount"
                   rules={[
-                    { required: true, message: 'Please enter amount' },
+                    { required: enabledSections.yearly, message: 'Please enter amount' },
                     { type: 'number', min: 0, message: 'Amount must be greater than or equal to 0' }
                   ]}
                 >
@@ -184,6 +215,7 @@ const TransactionLimits: React.FC = () => {
                     placeholder="Enter amount"
                     formatter={value => `AED ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                     parser={value => value!.replace(/AED\s?|(,*)/g, '')}
+                    disabled={!enabledSections.yearly}
                   />
                 </Form.Item>
               </Col>

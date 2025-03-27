@@ -47,6 +47,10 @@ import { BillerSubBiller } from "./pages/biller-subbiller";
 import { BillerSubBillerProvider } from "./pages/biller-subbiller/provider";
 import { BillerSubBillerServiceType } from "./pages/biller-subbiller/service-type";
 import { BillerSubBillerUpdate } from "./pages/biller-subbiller/update";
+import { CreditCardPayment } from "./pages/credit-card-payment";
+import { CreditCardPaymentProvider } from "./pages/credit-card-payment/provider";
+import { CreditCardPaymentServiceType } from "./pages/credit-card-payment/service-type";
+import { CreditCardPaymentUpdate } from "./pages/credit-card-payment/update";
 import { RoleManagement } from "./pages/role-management";
 import { CreateRole } from "./pages/role-management/create";
 import { UserManagement } from "./pages/user-management";
@@ -68,6 +72,7 @@ import {
   LogoutOutlined,
   UserOutlined,
   SafetyOutlined,
+  CreditCardOutlined,
 } from "@ant-design/icons";
 
 const siderMenuItems = [
@@ -120,6 +125,11 @@ const siderMenuItems = [
     key: "/biller-subbiller",
     icon: <IdcardOutlined />,
     label: "Biller & Sub Biller ID",
+  },
+  {
+    key: "/credit-card-payment",
+    icon: <CreditCardOutlined />,
+    label: "Credit Card Payment",
   },
   {
     key: "/role-management",
@@ -229,6 +239,14 @@ function App() {
                     meta: {
                       label: "Biller & Sub Biller ID",
                       icon: <IdcardOutlined />,
+                    },
+                  },
+                  {
+                    name: "credit-card-payment",
+                    list: "/credit-card-payment",
+                    meta: {
+                      label: "Credit Card Payment",
+                      icon: <CreditCardOutlined />,
                     },
                   },
                   {
@@ -419,6 +437,22 @@ function App() {
                     <Route
                       path="/biller-subbiller/update"
                       element={<BillerSubBillerUpdate />}
+                    />
+                    <Route
+                      path="/credit-card-payment"
+                      element={<CreditCardPayment />}
+                    />
+                    <Route
+                      path="/credit-card-payment/provider"
+                      element={<CreditCardPaymentProvider />}
+                    />
+                    <Route
+                      path="/credit-card-payment/service-type"
+                      element={<CreditCardPaymentServiceType />}
+                    />
+                    <Route
+                      path="/credit-card-payment/update"
+                      element={<CreditCardPaymentUpdate />}
                     />
                     <Route path="/reports" element={<Reports />} />
                     <Route path="/reports/reconciliation-report" element={<ReconciliationReport />} />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Card,
   Typography,
@@ -9,14 +9,12 @@ import {
   Space,
   Steps,
   Form,
-  Input,
-  Select
+  Input
 } from 'antd';
 import { useNavigate, useLocation } from 'react-router';
 
 const { Title } = Typography;
 const { useToken } = theme;
-const { Option } = Select;
 
 // Define steps for the stepper
 const steps = [
@@ -34,16 +32,16 @@ const steps = [
   },
 ];
 
-export const BillerSubBillerUpdate: React.FC = () => {
+export const CreditCardPaymentUpdate: React.FC = () => {
   const { token } = useToken();
   const navigate = useNavigate();
   const location = useLocation();
   const [form] = Form.useForm();
   
   // Get the selected category, provider, and service type from location state
-  const selectedCategory = location.state?.category || 'Telecom';
-  const selectedProvider = location.state?.provider || 'Du';
-  const selectedServiceType = location.state?.serviceType || 'Prepaid';
+  const selectedCategory = location.state?.category || 'Credit';
+  const selectedProvider = location.state?.provider || 'Visa';
+  const selectedServiceType = location.state?.serviceType || 'Domestic';
 
   const handleFinish = (values: any) => {
     console.log('Form values:', values);
@@ -53,12 +51,12 @@ export const BillerSubBillerUpdate: React.FC = () => {
     // In a real app, submit the data to an API
     
     // Navigate back to the main page or show success message
-    navigate('/biller-subbiller');
+    navigate('/credit-card-payment');
   };
 
   const handleCancel = () => {
     // Go back to the service type page
-    navigate('/biller-subbiller/service-type', { 
+    navigate('/credit-card-payment/service-type', { 
       state: { 
         category: selectedCategory,
         provider: selectedProvider 
@@ -69,7 +67,7 @@ export const BillerSubBillerUpdate: React.FC = () => {
   return (
     <div style={{ padding: token.paddingLG }}>
       <Card>
-        <Title level={3}>Biller / Sub-Biller IDs</Title>
+        <Title level={3}>Credit Card Payment Configuration</Title>
         
         {/* Stepper */}
         <div style={{ margin: `${token.marginLG}px 0` }}>
@@ -81,7 +79,7 @@ export const BillerSubBillerUpdate: React.FC = () => {
         </div>
         
         <div style={{ marginTop: token.marginLG }}>
-          <Title level={5}>Update Biller Details</Title>
+          <Title level={5}>Update Payment Configuration</Title>
           
           <Form
             form={form}
@@ -91,8 +89,8 @@ export const BillerSubBillerUpdate: React.FC = () => {
               category: selectedCategory,
               provider: selectedProvider,
               serviceType: selectedServiceType,
-              billerCode: '',
-              subBillerCode: ''
+              merchantId: '',
+              terminalId: ''
             }}
           >
             <Row gutter={16}>
@@ -125,9 +123,9 @@ export const BillerSubBillerUpdate: React.FC = () => {
               </Col>
               <Col span={12}>
                 <Form.Item
-                  name="billerCode"
-                  label="Biller Code"
-                  rules={[{ required: true, message: 'Please enter biller code' }]}
+                  name="merchantId"
+                  label="Merchant ID"
+                  rules={[{ required: true, message: 'Please enter merchant ID' }]}
                 >
                   <Input />
                 </Form.Item>
@@ -137,17 +135,14 @@ export const BillerSubBillerUpdate: React.FC = () => {
             <Row gutter={16}>
               <Col span={12}>
                 <Form.Item
-                  name="subBillerCode"
-                  label="Sub-Biller Code"
-                  rules={[{ required: true, message: 'Please enter sub-biller code' }]}
+                  name="terminalId"
+                  label="Terminal ID"
+                  rules={[{ required: true, message: 'Please enter terminal ID' }]}
                 >
                   <Input />
                 </Form.Item>
               </Col>
-
             </Row>
-            
-
             
             <Row justify="end" style={{ marginTop: token.marginXL }}>
               <Space>
@@ -167,4 +162,4 @@ export const BillerSubBillerUpdate: React.FC = () => {
   );
 };
 
-export default BillerSubBillerUpdate;
+export default CreditCardPaymentUpdate;
