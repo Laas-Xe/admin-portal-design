@@ -7,12 +7,10 @@ import {
   Button, 
   Space, 
   Select,
-  Tag,
   Row,
   Col,
   Table,
-  Divider,
-  Radio
+  Divider
 } from "antd";
 import { ArrowLeftOutlined, CloseOutlined, PlusOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router";
@@ -35,7 +33,6 @@ interface Role {
 interface UserRole {
   id: string;
   role: Role;
-  type: string;
 }
 
 export const AddUser: React.FC = () => {
@@ -47,7 +44,6 @@ export const AddUser: React.FC = () => {
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [userRoles, setUserRoles] = useState<UserRole[]>([]);
   const [currentRole, setCurrentRole] = useState<string>("");
-  const [currentRoleType, setCurrentRoleType] = useState<string>("maker");
 
   // Sample roles data - in a real application, this would come from an API
   const availableRoles: Role[] = [
@@ -60,8 +56,7 @@ export const AddUser: React.FC = () => {
     { id: "7", name: "Support" },
   ];
   
-  // Role types
-  const roleTypes = ["maker", "checker", "viewer"];
+
 
   const handleSearch = () => {
     // In a real application, you would call an API to search for the user
@@ -101,16 +96,15 @@ export const AddUser: React.FC = () => {
     const role = availableRoles.find(r => r.id === currentRole);
     if (!role) return;
     
-    // Check if this role type combination already exists
+    // Check if this role already exists
     const exists = userRoles.some(
-      ur => ur.role.id === currentRole && ur.type === currentRoleType
+      ur => ur.role.id === currentRole
     );
     
     if (!exists) {
       const newUserRole: UserRole = {
         id: `${Date.now()}`, // Generate a unique ID
-        role: role,
-        type: currentRoleType
+        role: role
       };
       
       setUserRoles([...userRoles, newUserRole]);
@@ -241,7 +235,7 @@ export const AddUser: React.FC = () => {
               {/* Role Assignment */}
               <div style={{ marginBottom: "20px" }}>
                 <Row gutter={16} align="middle">
-                  <Col span={10}>
+                  <Col span={20}>
                     <Select
                       placeholder="SELECT ROLE"
                       style={{ width: '100%' }}
@@ -254,19 +248,6 @@ export const AddUser: React.FC = () => {
                         </Option>
                       ))}
                     </Select>
-                  </Col>
-                  <Col span={10}>
-                    <Radio.Group 
-                      value={currentRoleType} 
-                      onChange={(e) => setCurrentRoleType(e.target.value)}
-                      buttonStyle="solid"
-                    >
-                      {roleTypes.map(type => (
-                        <Radio.Button key={type} value={type}>
-                          {type.charAt(0).toUpperCase() + type.slice(1)}
-                        </Radio.Button>
-                      ))}
-                    </Radio.Group>
                   </Col>
                   <Col span={4}>
                     <Button 
@@ -296,15 +277,7 @@ export const AddUser: React.FC = () => {
                       key="role" 
                       render={(_, record: UserRole) => record.role.name}
                     />
-                    <Table.Column 
-                      title="Type" 
-                      key="type" 
-                      render={(_, record: UserRole) => (
-                        <Tag color="blue">
-                          {record.type.charAt(0).toUpperCase() + record.type.slice(1)}
-                        </Tag>
-                      )}
-                    />
+
                     <Table.Column 
                       title="Action" 
                       key="action"

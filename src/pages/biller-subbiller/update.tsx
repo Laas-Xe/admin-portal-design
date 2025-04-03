@@ -10,7 +10,11 @@ import {
   Steps,
   Form,
   Input,
-  Select
+  Select,
+  Switch,
+  InputNumber,
+  Divider,
+  Alert
 } from 'antd';
 import { useNavigate, useLocation } from 'react-router';
 
@@ -44,16 +48,31 @@ export const BillerSubBillerUpdate: React.FC = () => {
   const selectedCategory = location.state?.category || 'Telecom';
   const selectedProvider = location.state?.provider || 'Du';
   const selectedServiceType = location.state?.serviceType || 'Prepaid';
+  
+  // State for API validation result
+  const [validationResult, setValidationResult] = useState<{ success: boolean; message: string } | null>(null);
 
   const handleFinish = (values: any) => {
     console.log('Form values:', values);
     console.log('Selected category:', selectedCategory);
     console.log('Selected provider:', selectedProvider);
     console.log('Selected service type:', selectedServiceType);
-    // In a real app, submit the data to an API
     
-    // Navigate back to the main page or show success message
-    navigate('/biller-subbiller');
+    // Simulate API validation
+    // In a real app, this would be an actual API call
+    setTimeout(() => {
+      // Simulate successful validation
+      setValidationResult({
+        success: true,
+        message: 'Biller details validated successfully!'
+      });
+      
+      // After successful validation, you would submit the data
+      // and then navigate
+      setTimeout(() => {
+        navigate('/biller-subbiller');
+      }, 2000);
+    }, 1000);
   };
 
   const handleCancel = () => {
@@ -92,7 +111,12 @@ export const BillerSubBillerUpdate: React.FC = () => {
               provider: selectedProvider,
               serviceType: selectedServiceType,
               billerCode: '',
-              subBillerCode: ''
+              subBillerCode: '',
+              billerMax: 10000,
+              billerMin: 10,
+              billerDenomination: 1,
+              isPartialPaymentAllowed: false,
+              tpDenomination: 1
             }}
           >
             <Row gutter={16}>
@@ -144,12 +168,88 @@ export const BillerSubBillerUpdate: React.FC = () => {
                   <Input />
                 </Form.Item>
               </Col>
-
+              <Col span={12}>
+                <Form.Item
+                  name="billerMax"
+                  label="Biller Max"
+                  rules={[{ required: true, message: 'Please enter biller maximum amount' }]}
+                >
+                  <InputNumber
+                    style={{ width: '100%' }}
+                    min={0}
+                    formatter={value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                  />
+                </Form.Item>
+              </Col>
             </Row>
-            
 
+            <Row gutter={16}>
+              <Col span={12}>
+                <Form.Item
+                  name="billerMin"
+                  label="Biller Min"
+                  rules={[{ required: true, message: 'Please enter biller minimum amount' }]}
+                >
+                  <InputNumber
+                    style={{ width: '100%' }}
+                    min={0}
+                    formatter={value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                  />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  name="billerDenomination"
+                  label="Biller Denomination"
+                  rules={[{ required: true, message: 'Please enter biller denomination' }]}
+                >
+                  <InputNumber
+                    style={{ width: '100%' }}
+                    min={1}
+                  />
+                </Form.Item>
+              </Col>
+            </Row>
+
+            <Row gutter={16}>
+              <Col span={12}>
+                <Form.Item
+                  name="tpDenomination"
+                  label="TP Denomination"
+                  rules={[{ required: true, message: 'Please enter TP denomination' }]}
+                >
+                  <InputNumber
+                    style={{ width: '100%' }}
+                    min={1}
+                  />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  name="isPartialPaymentAllowed"
+                  label="Is Partial Payment Allowed"
+                  valuePropName="checked"
+                >
+                  <Switch />
+                </Form.Item>
+              </Col>
+            </Row>
+
+            {validationResult && (
+              <Row style={{ marginBottom: token.marginMD }}>
+                <Col span={24}>
+                  <Alert
+                    message={validationResult.message}
+                    type={validationResult.success ? "success" : "error"}
+                    showIcon
+                  />
+                </Col>
+              </Row>
+            )}
             
-            <Row justify="end" style={{ marginTop: token.marginXL }}>
+            <Divider />
+            
+            <Row justify="end" style={{ marginTop: token.marginLG }}>
               <Space>
                 <Button onClick={handleCancel}>CANCEL</Button>
                 <Button 
